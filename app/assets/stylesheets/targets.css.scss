@@ -1,0 +1,128 @@
+// Place all the styles related to the targets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background-color: #ddd;  
+  
+  #content {
+    margin: 0 auto;
+    width: 900px;
+  }
+  #left_column {
+    width: 700px;
+    float: left;
+  }
+}
+
+header {
+  margin: 0 0 50px;
+  background-color: black;
+  border-bottom: solid 1px #fff;
+  
+  nav {
+  	margin: 0 auto;
+    width: 900px;
+    padding: 9px 0;
+    h1 {
+      color: white;
+      font-size: 22px;
+    }
+  }
+}
+
+.knowledge {
+  border-radius: 12px;
+  border-bottom: solid 3px #999;
+  margin: 0 0 20px;
+  background-color: white;
+  padding: 20px;
+  
+  .primary {
+    font-size: 48px;
+    font-weight: bold;
+  }
+}
+
+.best.mnemonic {
+  margin: 0 0 50px;
+  .heading {
+    background-color: #47be15;
+    border-bottom: solid 1px #3c9f12;
+  }
+  .body {
+    border-top: solid 2px #30810e;
+  }
+}
+
+.regular.mnemonic {
+  margin: 0 0 20px;
+  .heading {
+    background-color: #aaa;
+    border-bottom: solid 1px #888;
+  }
+  .body {
+    border-top: solid 2px #666;
+  }
+}
+
+.mnemonic {
+  .heading {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    padding: 5px 16px 3px;
+    color: white;
+    text-shadow: 0 -1px 1px #444;
+    .title {
+      float: left;
+      padding: 1px 0 0;
+      a {
+        color: white;
+        font-weight: bold;
+        &:hover {
+          color: #ddd;
+        }
+      }
+    }
+    .score {
+      float: right;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+  .body {
+    background-color: white;
+    padding: 16px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom: solid 3px #aaa;
+    p {
+      width: 570px;
+      float: left;
+    }
+    .voting {
+      float: right;
+      width: 25px;
+      .up, .down {
+        display: inline-block;
+        padding: 4px;
+        background-color: #47be15;
+        color: white;
+        border-radius: 6px;
+        margin: 0 0 2px;
+        &:hover {
+          background-color: #aaa;
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.add_mnemonic {
+  border-radius: 12px;
+  border: dotted 1px #666;
+  margin: 0 0 20px;
+  padding: 20px;
+}
