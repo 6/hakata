@@ -1,3 +1,372 @@
+// Place all the styles related to the targets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
 body {
+  background-color: white;  
+  
+  #content {
+    margin: 0 auto;
+    width: 900px;
+  }
+  #left_column {
+    width: 620px;
+    float: left;
+  }
+  #right_column {
+    width: 240px;
+    padding: 0 0 0 20px;
+    float: right;
+    border-left: solid 1px #bbb;
+    min-height: 700px;
+  }
+  a {
+    color: #222;
+    &:hover {
+      color: #555;
+    }
+  }
+}
+
+header {
+  margin: 0 0 50px;
   background-color: black;
+  border-bottom: solid 1px #fff;
+  
+  nav {
+  	margin: 0 auto;
+    width: 900px;
+    padding: 9px 0;
+    h1 a {
+      color: white;
+      font-size: 22px;
+      width: 199px;
+      height: 49px;
+      background: image-url("MORRIS.jpg");
+      display: block;
+    }
+    ul {
+      list-style: none;
+      margin: 0 0 0;
+      li {
+        display: inline;
+        margin: 0 10px 0 0;
+        a {
+          color: white;
+          font-weight: bold;
+          font-size: 13px;
+        }
+      }
+    }
+    #login_status {
+      float: right;
+      color: #aaa;
+      a {
+        font-weight: bold;
+        color: white;
+        &:hover {
+          color: #aaa;
+        }
+      }
+    }
+  }
+}
+
+.guide {
+  margin: 0 0 10px;
+  padding: 0 0 10px;
+  border-bottom: solid 1px #ccc;
+  h2 a {
+    font-size: 14px;
+    color: #333;
+    &:hover {
+      color: #777;
+    }
+  }
+}
+
+.knowledge {
+  padding: 20px;
+  #card_front {
+    width: 300px;
+    float: left;
+    padding: 20px;
+    border-radius: 12px;
+    border-top: solid 1px #ddd;
+    border-right: solid 1px #aaa;
+    border-left: solid 1px #aaa;
+    border-bottom: solid 3px #888;
+    h1 {
+      font-size: 38px;
+      font-weight: bold;
+      color: black;
+    }  
+  }
+
+  #card_back {
+    width: 180px;
+    float: right;
+    font-size: 16px;
+    padding: 30px 20px 0;
+    h1 {
+      color: black;
+    }
+  }
+}
+
+#center {
+  #mnemonics {
+    margin: 40px 0 0;
+    padding: 20px 0;
+    border-top: dotted 1px #ccc;
+  }
+}
+
+.best.mnemonic {
+  margin: 0 0 50px;
+  .heading {
+    background-color: #47be15;
+    border-bottom: solid 1px #3c9f12;
+  }
+  .body {
+    border-top: solid 2px #30810e;
+  }
+}
+
+.regular.mnemonic {
+  margin: 0 0 20px;
+  .heading {
+    background-color: #aaa;
+    border-bottom: solid 1px #888;
+  }
+  .body {
+    border-top: solid 2px #666;
+  }
+}
+
+.mnemonic {
+  .heading {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    padding: 5px 16px 3px;
+    color: white;
+    text-shadow: 0 -1px 1px #555;
+    .title {
+      float: left;
+      padding: 1px 0 0;
+      a {
+        color: white;
+        font-weight: bold;
+        &:hover {
+          color: #ddd;
+        }
+      }
+    }
+    .score {
+      float: right;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+  .body {
+    background-color: white;
+    padding: 16px;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom: solid 3px #aaa;
+    p {
+      float: left;
+    }
+    .voting {
+      float: right;
+      width: 25px;
+      .up, .down, .reverse_up, .reverse_down {
+        display: inline-block;
+        padding: 4px;
+        color: white;
+        border-radius: 6px;
+        margin: 0 0 2px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .up, .down {
+        background-color: #47be15;
+        &:hover {
+          background-color: #aaa;
+        }
+      }
+      .reverse_up, .reverse_down {
+        background-color: #aaa;
+        &:hover {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}
+
+#new_list_nav {
+  margin: 0 0 20px;
+  .next, .previous {
+    display: block;
+    border-bottom: solid 1px #ccc;
+    padding: 10px;
+    h5 {
+      font-size: 12px;
+      font-weight: normal;
+      margin: 0 0 10px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  .list_identity {
+    margin: 10px 0;
+  }
+}
+
+.list_nav {
+  margin: 0 0 20px;
+  border-bottom: solid 1px #ccc;
+  h5 {
+    font-size: 11px;
+    color: #888;
+    font-weight: normal;
+  }
+  .next_prev_nav {
+    h2 {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+  }
+  .previous {
+    width: 118px;
+    float: left;
+  }
+  .next {
+    width: 118px;
+    float: right;
+  }
+  .list_identity {
+    padding: 10px 0;
+    h2 a {
+      font-size: 16px;
+    }
+  }
+}
+
+#card_mode {
+  margin: 20px 0;
+  h4 {
+    color: #999;
+    font-size: 11px;
+    margin: 0 0 10px;
+    font-weight: normal;
+  }
+  .button_container {
+    width: 184px;
+    margin: 0 auto;
+    border-radius: 8px;
+    .front, .center, .back {   
+      width: 40px;
+      text-align: center;
+      padding: 10px;
+      background-color: #ccc;
+      float: left;
+      border-bottom: solid 4px #999;
+      text-shadow: 0 1px -1px #fff;
+      font-weight: bold;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .front {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    .center {
+      border-left: solid 1px #999;
+      border-right: solid 1px #999;
+    }
+    .back {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .front_pressed,
+    .center_pressed, 
+    .back_pressed {
+      border-top: solid 2px #666;
+      border-bottom: solid 2px #bbb;
+      background-color: #bbb;
+      border-left: solid 1px #999; 
+      color: white;
+      text-shadow: 0 1px 1px #444;   
+    }
+  }
+}
+
+.add_mnemonic {
+  border-radius: 12px;
+  border: dotted 1px #666;
+  margin: 0 0 20px;
+  padding: 20px;
+}
+
+.standard_list {
+  list-style: none;
+  margin: 0;
+  li {
+    padding: 10px;
+    border-bottom: dotted 1px #ccc;
+    h2 {
+      font-size: 24px;
+      line-height: 28px;
+    }
+    p {
+      margin: 5px 0 0;
+      font-family: Lucida Grande, sans-serif;
+    }
+    h5 {
+      float: right;
+      margin: 7px 0 0;
+      a {
+        color: #888;
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.standard_title {
+  padding: 0 0 10px;
+  border-bottom: solid 1px #ddd;
+  h1 {
+    font-size: 24px;
+    line-height: 28px;
+    color: black;
+  }
+}
+
+.member_lists {
+  margin: 0 0 20px;
+  h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    border-top: solid 1px #ddd;
+    li {
+      padding: 10px 0;
+      border-bottom: solid 1px #ddd;
+    }
+  }
 }

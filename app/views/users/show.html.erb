@@ -1,0 +1,19 @@
+<div class="standard_title">
+  <h1><%= @user.name %></h1>
+</div>
+
+<h2>All Mnemonics</h2>
+
+<ul>
+  <% @facts.each do |f| %>
+    <li><%= link_to f.name, f %></li>
+  <% end %>
+</ul>
+
+<h2>Recently Upvoted</h2>
+
+<ul>
+  <% @user.votes.each do |v| %>
+    <li><%= link_to v.mnemonic.fact.name, v.mnemonic.fact %></li>
+  <% end %>
+</ul>

@@ -17,6 +17,9 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'sorcery'
+gem 'rdiscount'
+
 gem 'jquery-rails'
 
 # Use unicorn as the web server

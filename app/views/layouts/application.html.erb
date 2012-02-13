@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hakata</title>
+  <title><%= yield (:title) %> | Lazy Genius</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,8 +9,24 @@
 <body>
 <header>
   <nav>
-    <h1>Hakata</h1>
+    <div id="login_status">
+      <% if current_user %>
+        Logged in as <%= link_to current_user.name, current_user %>.
+        <%= link_to "Settings", edit_user_path(current_user) %>
+        <%= link_to "Log out", logout_path %>
+      <% else %>
+        <%= link_to "Sign up", signup_path %> or
+        <%= link_to "log in", login_path %>.
+      <% end %>
+    </div>    
+    <h1><a href="/"></a></h1>
+    <ul>
+      <li><%= link_to "Facts", facts_path %></li>
+      <li><%= link_to "Fields", fields_path %></li>
+      <li><%= link_to "Lists", lists_path %></li>
+    </ul>
   </nav>
+  
 </header>
 <div id="content">
 <%= yield %>

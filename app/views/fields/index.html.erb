@@ -1,0 +1,16 @@
+<div id="left_column">
+  <ul class="standard_list">
+    <% @fields.each do |f| %>
+      <li>
+        <h2><%= link_to f.name, f %></h2>
+        <% if f.description %>
+          <p><%= f.description %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="right_column">
+  <%= link_to 'Create New Field', new_field_path %>
+</div>

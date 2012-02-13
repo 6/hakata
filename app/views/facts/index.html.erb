@@ -1,0 +1,21 @@
+<% title "Facts" %>
+
+<div id="left_column">
+  <div class="standard_title">
+    <h1>Recently Added Facts</h1>
+  </div>
+
+  <ul class="standard_list">
+    <% @facts.each do |t| %>
+      <li>
+        <h5><%= link_to t.field.name, t.field %></h5>
+        <h2><%= link_to t.name, t %></h2>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="right_column">
+  <%= link_to 'New Fact', new_fact_path %>
+</div>
+

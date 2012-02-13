@@ -1,0 +1,16 @@
+<% title "Lists" %>
+
+<div id="left_column">
+  <ul class="standard_list">
+    <% @lists.each do |l| %>
+      <li>
+        <h2><%= link_to l.name, l %></h2>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="right_column">
+  <p>Lists are like playlists of facts.</p>
+  <%= link_to 'Create New List', new_list_path %>
+</div>

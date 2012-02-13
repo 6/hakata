@@ -1,0 +1,22 @@
+<% title @list.name %>
+
+<p id="notice"><%= notice %></p>
+
+<div id="left_column">
+  <div class="standard_title">
+    <h1><%= @list.name %></h1>
+  </div>
+
+  <ul class="standard_list">
+    <% @list.facts.each do |t| %>
+      <li>
+        <h2><%= link_to t.name, '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s %></h2>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
+
+<div id="right_column">
+  <%= link_to 'Edit List', edit_list_path(@list) %>
+</div>

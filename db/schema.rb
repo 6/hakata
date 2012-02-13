@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121055720) do
+ActiveRecord::Schema.define(:version => 20120211050601) do
 
   create_table "criteria", :force => true do |t|
     t.string   "name"
@@ -22,20 +23,72 @@ ActiveRecord::Schema.define(:version => 20120121055720) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "target_id"
+    t.integer  "fact_id"
+    t.string   "type"
+    t.string   "value"
+  end
+
+  create_table "facts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "field_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "definition"
+  end
+
+  create_table "fields", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
+
+  create_table "listizations", :force => true do |t|
+    t.integer  "fact_id"
+    t.integer  "list_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lists_targets", :id => false, :force => true do |t|
+    t.integer "list_id"
+    t.integer "target_id"
   end
 
   create_table "mnemonics", :force => true do |t|
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "target_id"
+    t.integer  "fact_id"
     t.integer  "score"
+    t.integer  "user_id"
+    t.boolean  "best"
   end
 
-  create_table "targets", :force => true do |t|
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "mnemonic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "up"
   end
 
 end

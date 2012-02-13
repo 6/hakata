@@ -1,0 +1,145 @@
+<% title @fact.name %>
+
+<div id="left_column">
+
+<section class="guide">
+  <h2><%= link_to @fact.field.name, @fact.field %></h2>
+</section>
+
+<%
+# Front: just @fact.name
+# Off: @fact.name on one card, @fact.definition on the other. Mnemonics and add form below.
+# Back: just @fact.definition
+%>
+
+<section id="front" <%= view_display_none? 'front' %>>
+  <div class="knowledge clearfix">
+    <div id="card_front">
+      <h1><%= @fact.name %></h1>
+    </div>
+  </div>
+  <div class="return_to_center">
+    Show card
+  </div>
+</section>
+
+<section id="back" <%= view_display_none? 'back' %>>
+  <div class="knowledge clearfix">
+    <div id="card_back">
+      <h1><%= m @fact.definition %></h1>
+    </div>
+  </div>
+  <div class="return_to_center">
+    Show card
+  </div>
+</section>
+
+<section id="center" <%= view_display_none? 'center' %>>
+
+  <div class="knowledge clearfix">
+    <div id="card_front">
+      <h1><%= @fact.name %></h1>
+    </div>
+  
+    <div id="card_back">
+      <h1><%= m @fact.definition %></h1>
+    </div>
+  </div>
+
+  <div class="description"><%= m @fact.description %></div>
+
+  <div id="mnemonics">
+    <h3>How do you remember this?</h3>
+    <% first = true %>
+    <% @mnemonics.each do |m| %>
+      <div class="mnemonic <%= (first) ? 'best' : 'regular' %>">
+        <div class="heading clearfix">
+          <div class="title">
+            <%= "Best mnemonic - " if first %><%= link_to m.user.name, m.user %>
+          </div>
+          <div class="score">
+            <%= m.votes.count %>
+          </div>
+        </div>
+        <div class="body clearfix">
+          <p><%= m.body %></p>
+        </div>
+      </div>
+      <% first = false %>
+    <% end %>
+
+    <% if !@moukaita && current_user %>
+    <div class="add_mnemonic">
+      <h3>Add your own</h3>
+      <%= form_for(@mnemonic) do |f| %> 
+        <p>
+          <%= f.label :body, 'A mnemonic' %><br />
+          <%= f.text_area :body, :rows => 4 %>
+        </p>
+    
+        <%= f.hidden_field :fact_id, :value => @fact.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+</section>
+
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Edit', edit_fact_path(@fact) %> |
+<%= link_to 'Back', facts_path %>
+
+</div>
+
+<div id="right_column">
+  <% if @list %>
+    <div id="new_list_nav">
+      <% if @next %>
+        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
+          <h5>Next &raquo;</h5>
+          <h2><%= @next.name %></h2>
+        </a>
+      <% end %>
+      <% if @previous %>
+        <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
+          <h5>&laquo; Previous</h5>
+          <h2><%= @previous.name %></h2>
+        </a>
+      <% end %>
+      <div class="list_identity">
+        <h2><%= link_to @list.name, @list %></h2>
+      </div>
+    </div>
+  <% end %>
+  
+  <% if @list %>
+    <div id="card_mode">
+      <h4>Flashcard Mode</h4>
+      <div class="button_container clearfix">
+        <span id="front_mode" class="front <%= 'front_pressed' if session[:cardview] == 'front' %>">front</span>
+        <span id="center_mode" class="center <%= 'center_pressed' if session[:cardview] == 'center' %>">off</span>
+        <span id="back_mode" class="back <%= 'back_pressed' if session[:cardview] == 'back' %>">back</span>
+      </div>
+    </div>
+  <% end %>
+  
+  <% if @member_lists %>
+    <div class="member_lists">
+      <h2>Part of these Lists</h2>
+      <ul>
+        <% @member_lists.each do |l| %>
+          <li><%= link_to l.name, '/lists/'+l.id.to_s+'/facts/'+@fact.id.to_s %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render 'add_to_list' %>
+</div>

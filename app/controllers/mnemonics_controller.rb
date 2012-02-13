@@ -25,6 +25,9 @@ class MnemonicsController < ApplicationController
   # GET /mnemonics/new.json
   def new
     @mnemonic = Mnemonic.new
+    
+#     user.mnemonics << mnemonic
+#     @mnemonics.user << current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,13 +45,13 @@ class MnemonicsController < ApplicationController
   def create
     @mnemonic = Mnemonic.new(params[:mnemonic])
 
-    @target = Target.find(:first, :conditions => ['id=?', params[:mnemonic][:target_id]])
+    @fact = Fact.find(:first, :conditions => ['id=?', params[:mnemonic][:fact_id]])
     
-    @target.mnemonics << @mnemonic
+    @fact.mnemonics << @mnemonic
 
     respond_to do |format|
       if @mnemonic.save
-        format.html { redirect_to @mnemonic, :notice => 'Mnemonic was successfully created.' }
+        format.html { redirect_to @fact, :notice => 'Mnemonic was successfully created.' }
         format.json { render :json => @mnemonic, :status => :created, :location => @mnemonic }
       else
         format.html { render :action => "new" }
@@ -61,11 +64,25 @@ class MnemonicsController < ApplicationController
   # PUT /mnemonics/1.json
   def update
     @mnemonic = Mnemonic.find(params[:id])
-    @target = @mnemonic.target
+    @fact = @mnemonic.fact
+    
+    if params[:mnemonic][:score]
+      if params[:mnemonic][:score] == 'up'
+        @vote = Vote.new
+        @mnemonic.votes << @vote
+        current_user.votes << @vote
+        @vote.save
+        @mnemonic.score = @mnemonic.score + 1
+      else
+        @vote = Vote.find(:first, :conditions => ['user_id=? AND mnemonic_id=?', current_user.id, @mnemonic.id])
+        # take vote association off
+        @mnemonic.score = @mnemonic.score - 1
+      end
+    end
 
     respond_to do |format|
       if @mnemonic.update_attributes(params[:mnemonic])
-        format.html { redirect_to @target, :notice => 'Mnemonic was successfully updated.' }
+        format.html { redirect_to @fact, :notice => 'Mnemonic was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

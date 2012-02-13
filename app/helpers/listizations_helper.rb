@@ -1,0 +1,2 @@
+module ListizationsHelper
+end
