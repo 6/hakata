@@ -17,6 +17,10 @@ group :assets do
   gem 'uglifier'
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'sorcery'
 gem 'rdiscount'
 
