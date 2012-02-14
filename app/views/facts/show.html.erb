@@ -1,4 +1,10 @@
-<% title @fact.name %>
+<%
+if session[:cardview] == 'front' || session[:cardview] == 'center'
+  title @fact.name
+else
+  title @fact.definition[0,10]
+end 
+%>
 
 <div id="left_column">
 
@@ -12,7 +18,7 @@
 # Back: just @fact.definition
 %>
 
-<section id="front" <%= view_display_none? 'front' %>>
+<section id="front" <%= view_display_none? 'front', @list.nil? %>>
   <div class="knowledge clearfix">
     <div id="card_front">
       <h1><%= @fact.name %></h1>
@@ -23,7 +29,7 @@
   </div>
 </section>
 
-<section id="back" <%= view_display_none? 'back' %>>
+<section id="back" <%= view_display_none? 'back', @list.nil? %>>
   <div class="knowledge clearfix">
     <div id="card_back">
       <h1><%= m @fact.definition %></h1>
@@ -34,7 +40,7 @@
   </div>
 </section>
 
-<section id="center" <%= view_display_none? 'center' %>>
+<section id="center" <%= view_display_none? 'center', @list.nil? %>>
 
   <div class="knowledge clearfix">
     <div id="card_front">
@@ -104,13 +110,21 @@
       <% if @previous %>
         <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
           <h5>Previous &#8593;</h5>
-          <h2><%= @previous.name %></h2>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
+            <h2><%= @previous.name %></h2>
+          <% else %>
+            <h2><%= @previous.definition[0,10] %></h2>
+          <% end %>
         </a>
       <% end %>
       <% if @next %>
         <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
           <h5>Next &#8595;</h5>
-          <h2><%= @next.name %></h2>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
+            <h2><%= @next.name %></h2>
+          <% else %>
+            <h2><%= @next.definition[0,10] %></h2>
+          <% end %>
         </a>
       <% end %>
       <div class="list_identity">

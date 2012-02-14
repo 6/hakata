@@ -8,13 +8,15 @@ module ApplicationHelper
     RDiscount.new(string).to_html.html_safe
   end
   
-  def view_display_none?(position)
+  def view_display_none?(position, list_mode_off)
     output = "style='display:none;'"
-    if position == 'front' && session[:cardview] == 'front'
+    if !list_mode_off && position == 'front' && session[:cardview] == 'front'
       output = ''
-    elsif position == 'center' && session[:cardview] == 'center'
+    elsif !list_mode_off && position == 'center' && session[:cardview] == 'center'
       output = ''
-    elsif position == 'back' && session[:cardview] == 'back'
+    elsif !list_mode_off && position == 'back' && session[:cardview] == 'back' 
+      output = '' 
+    elsif list_mode_off && position == 'center'
       output = ''
     end
     return output
