@@ -21,6 +21,9 @@ group :production do
   gem 'pg'
 end
 
+gem 'execjs'
+gem 'therubyracer'
+
 gem 'sorcery'
 gem 'rdiscount'
 
