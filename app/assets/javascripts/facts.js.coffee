@@ -60,18 +60,19 @@ $ ->
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 37 
+    if e.keyCode == 38 
       window.location = $('.previous').attr('href') if $('.previous').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 39
+    if e.keyCode == 40
       window.location = $('.next').attr('href') if $('.next').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 32
+    if e.keyCode == 37 ||
+       e.keyCode == 39
       turn_center()
   );

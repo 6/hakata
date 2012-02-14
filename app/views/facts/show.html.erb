@@ -101,16 +101,16 @@
 <div id="right_column">
   <% if @list %>
     <div id="new_list_nav">
-      <% if @next %>
-        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
-          <h5>Next &raquo;</h5>
-          <h2><%= @next.name %></h2>
-        </a>
-      <% end %>
       <% if @previous %>
         <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
-          <h5>&laquo; Previous</h5>
+          <h5>Previous &#8593;</h5>
           <h2><%= @previous.name %></h2>
+        </a>
+      <% end %>
+      <% if @next %>
+        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
+          <h5>Next &#8595;</h5>
+          <h2><%= @next.name %></h2>
         </a>
       <% end %>
       <div class="list_identity">
