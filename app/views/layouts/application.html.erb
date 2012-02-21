@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield (:title) %> | Lazy Genius</title>
+  <title><%= yield (:title) %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,8 +21,8 @@
     </div>    
     <h1><a href="/"></a></h1>
     <ul>
+      <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Facts", facts_path %></li>
-      <li><%= link_to "Fields", fields_path %></li>
       <li><%= link_to "Lists", lists_path %></li>
     </ul>
   </nav>

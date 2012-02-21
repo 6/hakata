@@ -1,7 +1,35 @@
-<%= title 'Add Fact' %>
+<%= title 'Add Facts' %>
 
 <h1>New fact</h1>
 
-<%= render 'form' %>
+<%= form_for(@fact) do |f| %>
 
-<%= link_to 'Back', facts_path %>
+  <div class="options">
+    <% if @list %>
+      <p>Adding to <strong><%= @list.name %></strong></p>
+    <% end %>
+    
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+
+  <div class="fields clearfix">
+    <div class="front_side property">  
+      <%= f.label :name %><br />
+      <%= f.text_field :name %><br />
+    </div>
+
+    <div class="back_side property">
+      <%= f.label :definition %><br />
+      <%= f.text_field :definition %><br />
+    </div>
+  
+    <div class="description"> 
+      <%= f.label :description %> (only shown in non-flashcard mode)<br />
+      <%= f.text_area :description %><br />
+    </div>
+  </div>
+
+<% end %>
+

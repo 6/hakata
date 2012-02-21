@@ -119,6 +119,10 @@ header {
     margin: 40px 0 0;
     padding: 20px 0;
     border-top: dotted 1px #ccc;
+    h3 {
+      font-size: 16px;
+      margin: 0 0 15px;
+    }
   }
 }
 
@@ -227,7 +231,15 @@ header {
     }
   }
   .list_identity {
-    margin: 10px 0;
+    margin: 0 0 10px;
+    padding: 0 0 5px;
+    border-bottom: solid 1px #ccc;
+    h2 {
+      font-size: 16px;
+      a {
+        color: #222;
+      }
+    }
   }
 }
 
@@ -369,4 +381,54 @@ header {
       border-bottom: solid 1px #ddd;
     }
   }
+}
+
+#new_fact {
+  border: solid 1px #ccc;
+  .fields {
+    width: 700px;
+  }
+  .property {
+    float: left;
+    padding: 10px;
+    input {
+      font-size: 24px;
+      padding: 3px;
+      width: 280px;
+    }
+  }
+  .description {
+    float: left;
+    padding: 10px;
+    textarea {
+      width: 597px;
+      height: 50px;
+    }
+  }
+  .options {
+    width: 160px;
+    float: right;
+    padding: 20px 0 0;
+  }
+}
+
+aside {
+  float: right;
+}
+
+/* Buttons
+===========================*/
+.new_fact_button,
+.new_list_button {
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.new_fact_button a,
+.new_list_button a {
+  display: block;
+  padding: 10px 0;
+  width: 200px;
+  color: white;
+  background-color: black;
 }

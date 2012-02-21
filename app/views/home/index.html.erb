@@ -1,0 +1,33 @@
+<% title false %>
+
+<aside>
+  <div class="new_fact_button">
+    <a href="/facts/new">Create new fact</a>
+  </div>
+
+  <div class="new_list_button">
+    <a href="/lists/new">Create new list</a>
+  </div>
+</aside>
+
+<ul>
+  <li><strong>Ideas</strong></li>
+  <li>Hot mnemonics (facts)</li>
+  <li>Hot lists</li>
+</ul>
+
+<div id="hot_lists">
+  <% @lists.each do |l| %>
+    <div class="list">
+      <h3><%= link_to l.name, l %></h3>
+      <% i = 0 %>
+      <% l.facts.each do |f| %>
+        <div class="fact">
+          <p><%= link_to f.name, '/lists/'+l.id.to_s+'/facts/'+f.id.to_s %></p>
+        </div>
+        <% if i == 3 then break end %>
+        <% i = i+1 %>
+      <% end %>      
+    </div>
+  <% end %>
+</div>

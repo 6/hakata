@@ -10,7 +10,7 @@ Hakata::Application.routes.draw do
   resources :facts
   match 'sessions/cardview' => 'sessions#cardview'
   match 'lists/:list_id/facts/:id' => 'facts#show'
-  root :to => 'facts#index'
+  root :to => 'home#index'
   resources :lists do 
     collection { post :sort}
   end

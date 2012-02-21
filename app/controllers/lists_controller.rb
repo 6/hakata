@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'updated_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,6 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @list = List.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @list }
@@ -44,6 +43,7 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(params[:list])
+    current_user.lists << @list 
 
     respond_to do |format|
       if @list.save

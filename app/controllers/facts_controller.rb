@@ -15,7 +15,7 @@ class FactsController < ApplicationController
   def show
     @fact = Fact.find(params[:id])
     @mnemonic = Mnemonic.new
-    @lists = List.all
+    @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id])
     @list = List.find(params[:list_id]) if params[:list_id]
     if @list  
       @listization = Listization.find(:first, :conditions => ['list_id = ? AND fact_id = ?', @list.id, @fact.id])
@@ -45,10 +45,11 @@ class FactsController < ApplicationController
   # GET /facts/new.json
   def new
     @fact = Fact.new
-    
-#     element = @fact.elements.build
-#     element.type = 'alpha'
-#     element.name = 'vocabulary' # will be dictated by criteria through fields
+    if params[:list_id]
+      puts "LIST ID IS "+params[:list_id]
+      @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
+      @fact.lists << @list
+    end
     
     @lists = List.all
     @fields = Field.all

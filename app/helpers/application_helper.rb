@@ -1,6 +1,11 @@
 module ApplicationHelper
+
   def title(page_title)
-    content_for(:title) { page_title }
+    if page_title
+      content_for(:title) { page_title + ' | Lazy Genius' }
+    else
+      content_for(:title) { 'Lazy Genius' }
+    end
   end
   
   def m(string)

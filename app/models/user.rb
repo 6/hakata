@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :mnemonics
   has_many :votes
+  has_many :lists
   
   attr_accessible :email, :name, :password, :password_confirmation
   

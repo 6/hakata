@@ -12,12 +12,6 @@ end
   <h2><%= link_to @fact.field.name, @fact.field %></h2>
 </section>
 
-<%
-# Front: just @fact.name
-# Off: @fact.name on one card, @fact.definition on the other. Mnemonics and add form below.
-# Back: just @fact.definition
-%>
-
 <section id="front" <%= view_display_none? 'front', @list.nil? %>>
   <div class="knowledge clearfix">
     <div id="card_front">
@@ -107,6 +101,9 @@ end
 <div id="right_column">
   <% if @list %>
     <div id="new_list_nav">
+      <div class="list_identity">
+        <h2><%= link_to @list.name, @list %></h2>
+      </div>
       <% if @previous %>
         <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
           <h5>Previous &#8593;</h5>
@@ -127,9 +124,6 @@ end
           <% end %>
         </a>
       <% end %>
-      <div class="list_identity">
-        <h2><%= link_to @list.name, @list %></h2>
-      </div>
     </div>
   <% end %>
   
@@ -154,6 +148,6 @@ end
       </ul>
     </div>
   <% end %>
-
+  
   <%= render 'add_to_list' %>
 </div>
