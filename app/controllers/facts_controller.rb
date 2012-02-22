@@ -1,4 +1,5 @@
 class FactsController < ApplicationController
+
   # GET /facts
   # GET /facts.json
   def index
@@ -22,9 +23,6 @@ class FactsController < ApplicationController
       @next = Fact.find(:first, :joins => :listizations, :conditions => ['listizations.id > ? AND listizations.list_id = ?', @listization.id, @list.id])
       @previous = Fact.find(:last, :joins => :listizations, :conditions => ['listizations.id < ? AND listizations.list_id = ?', @listization.id, @list.id])
     end
-    
-    # Determine Flashcard View
-    session[:cardview] ||= 'off'
     
     # get all lists this mofo is a part of
     @member_lists = List.find(:all, :joins => :listizations, :conditions => ['listizations.fact_id = ?', @fact.id])

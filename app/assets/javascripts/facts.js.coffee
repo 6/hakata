@@ -72,7 +72,7 @@ $ ->
     toggle_edit_list()
     
 $ ->
-  $('.fact_list .delete, h1').click (event) -> 
+  $('.fact_list .delete').click (event) -> 
     event.preventDefault()
     fact_li = $(this).parent()
     $.post $(this).attr('href'),
