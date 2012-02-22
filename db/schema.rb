@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221031648) do
+ActiveRecord::Schema.define(:version => 20120221175315) do
 
   create_table "criteria", :force => true do |t|
     t.string    "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120221031648) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "user_id"
+    t.text      "description"
   end
 
   create_table "lists_targets", :id => false, :force => true do |t|

@@ -15,7 +15,7 @@ class FactsController < ApplicationController
   def show
     @fact = Fact.find(params[:id])
     @mnemonic = Mnemonic.new
-    @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id])
+    @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'updated_at DESC')
     @list = List.find(params[:list_id]) if params[:list_id]
     if @list  
       @listization = Listization.find(:first, :conditions => ['list_id = ? AND fact_id = ?', @list.id, @fact.id])
@@ -46,9 +46,8 @@ class FactsController < ApplicationController
   def new
     @fact = Fact.new
     if params[:list_id]
-      puts "LIST ID IS "+params[:list_id]
       @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
-      @fact.lists << @list
+      @list.facts << @fact
     end
     
     @lists = List.all

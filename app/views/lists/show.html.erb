@@ -3,13 +3,22 @@
 <p id="notice"><%= notice %></p>
 
 <div id="left_column">
-  <div class="standard_title">
+  <div class="list standard_title">
     <h1><%= @list.name %></h1>
+    <div class="owner">Created by <%= link_to current_user.name, current_user %></div>
+    <div class="description"><%= m @list.description %></div>
   </div>
-
-  <ul class="standard_list">
+  
+  <div class="edit_list_form">
+    <%= render 'form' %>
+  </div>
+  
+  <ul class="standard_list fact_list">
     <% @list.facts.each do |t| %>
       <li>
+        <a href="<%= '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s+'/remove' %>" class="delete">
+          <%= image_tag 'delete.png' %>
+        </a>
         <h2><%= link_to t.name, '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s %></h2>
       </li>
     <% end %>
@@ -17,8 +26,8 @@
 
 </div>
 
-<div id="right_column">
-  <%= link_to 'Edit List', edit_list_path(@list) %>
+<div id="right_column">  
+  <div class="edit_list_button">Edit list</div>
   
   <div class="new_fact_button">
     <a href="/facts/new?list_id=<%= @list.id %>">Add new fact</a>

@@ -31,8 +31,15 @@ turn_back = () ->
   $('#front').hide()
   $('#center').hide()
 
+toggle_edit_list = () ->
+  $('.fact_list .delete').toggle(200)
+  $('.standard_title.list').toggle(200)
+  $('.edit_list_form').toggle(200)
+  $('.edit_list_button').toggleClass('down')
+  
+
 # Le bindings
-# =================================
+# ================================= #
 
 $ ->
   $('#front_mode').click -> 
@@ -56,6 +63,21 @@ $ ->
   $('.return_to_center').click -> 
     turn_center()
 
+$ ->
+  $('.return_to_center').click -> 
+    turn_center()
+
+$ ->
+  $('.edit_list_button').click -> 
+    toggle_edit_list()
+    
+$ ->
+  $('.fact_list .delete, h1').click (event) -> 
+    event.preventDefault()
+    fact_li = $(this).parent()
+    $.post $(this).attr('href'),
+      (data) -> fact_li.remove()
+
 # The proceeding two may break in non-webkit browsers
 
 $ ->
@@ -76,3 +98,7 @@ $ ->
        e.keyCode == 39
       turn_center()
   );
+  
+# Edit mode in list/show
+# ================================= #
+

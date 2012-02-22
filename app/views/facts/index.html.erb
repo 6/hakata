@@ -8,7 +8,7 @@
   <ul class="standard_list">
     <% @facts.each do |t| %>
       <li>
-        <h5><%= link_to t.field.name, t.field %></h5>
+        <h5><%= t.created_at %></h5>
         <h2><%= link_to t.name, t %></h2>
       </li>
     <% end %>

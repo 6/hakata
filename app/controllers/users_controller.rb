@@ -2,16 +2,25 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @targets = Target.find(:all,
+    @facts = Fact.find(:all,
                            :joins => :mnemonics, 
                            :conditions => ["mnemonics.user_id=?", @user.id])
-    @best = Target.find(:all,
+    @best = Fact.find(:all,
                         :joins => :mnemonics,
                         :conditions => ["mnemonics.user_id=? AND mnemonics.best=?", @user.id, true])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @user }
+    end
+  end
+  
+  def lists
+      @lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'updated_at DESC')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @lists }
     end
   end
 

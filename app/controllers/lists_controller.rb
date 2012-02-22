@@ -83,4 +83,12 @@ class ListsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def removeFact
+    @list = List.find(params[:list_id])
+    @fact = Fact.find(params[:fact_id])
+    @list.facts.delete(@fact)
+    
+    redirect_to @list
+  end
 end

@@ -1,0 +1,19 @@
+<% title current_user.name+"\'s Lists" %>
+
+<div id="left_column">
+  <div class="standard_title">
+    <h1><%= current_user.name+"\'s Lists" %></h1>
+  </div>
+
+  <ul class="standard_list">
+    <% @lists.each do |l| %>
+      <li>
+        <h2><%= link_to l.name, l %></h2>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="right_column">
+  <%= link_to 'Create New List', new_list_path %>
+</div>
