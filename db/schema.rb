@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221175315) do
+ActiveRecord::Schema.define(:version => 20120222064214) do
 
   create_table "criteria", :force => true do |t|
     t.string    "name"
@@ -82,7 +82,11 @@ ActiveRecord::Schema.define(:version => 20120221175315) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "name"
+    t.string    "remember_me_token"
+    t.datetime  "remember_me_token_expires_at"
   end
+
+  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
   create_table "votes", :force => true do |t|
     t.text      "body"

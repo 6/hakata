@@ -42,7 +42,7 @@ header {
       font-size: 22px;
       width: 199px;
       height: 49px;
-      background: asset-url("MORRIS.jpg", image);
+      background-image: url(image_path('MORRIS.jpg'));
       display: block;
     }
     ul {
