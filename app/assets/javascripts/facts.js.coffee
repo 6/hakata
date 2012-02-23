@@ -32,9 +32,9 @@ turn_back = () ->
   $('#center').hide()
 
 toggle_edit_list = () ->
-  $('.fact_list .delete').toggle(200)
-  $('.standard_title.list').toggle(200)
-  $('.edit_list_form').toggle(200)
+  $('.fact_list .delete').toggle()
+  $('.standard_title.list').toggle()
+  $('.edit_list_form').toggle()
   $('.edit_list_button').toggleClass('down')
   
 
