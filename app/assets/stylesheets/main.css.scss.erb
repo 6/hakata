@@ -31,42 +31,48 @@ body {
 header {
   margin: 0 0 50px;
   background-color: black;
-  border-bottom: solid 1px #fff;
-  
-  nav {
-  	margin: 0 auto;
+  border-bottom: solid 1px #ccc;
+  #top {
+    padding: 7px 0 2px;
+  }
+  #bottom {
+    border-top: solid 1px #444;
+    border-bottom: solid 1px #888;
+    padding: 7px 0;
+  }
+  .inner {
+    margin: 0 auto;
     width: 900px;
-    padding: 9px 0;
-    h1 a {
-      color: white;
-      font-size: 22px;
-      width: 199px;
-      height: 49px;
-      background-image: url(<%= asset_path 'MORRIS.jpg' %>);
-      display: block;
-    }
-    ul {
-      list-style: none;
-      margin: 0 0 0;
-      li {
-        display: inline;
-        margin: 0 10px 0 0;
-        a {
-          color: white;
-          font-weight: bold;
-          font-size: 13px;
-        }
+  }
+  h1 a {
+    color: white;
+    font-size: 22px;
+    width: 199px;
+    height: 49px;
+    background-image: url(<%= asset_path 'MORRIS.jpg' %>);
+    display: block;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 0;
+    li {
+      display: inline;
+      margin: 0 20px 0 0;
+      a {
+        color: white;
+        font-weight: bold;
+        font-size: 13px;
       }
     }
-    #login_status {
-      float: right;
-      color: #aaa;
-      a {
-        font-weight: bold;
-        color: white;
-        &:hover {
-          color: #aaa;
-        }
+  }
+  #login_status {
+    float: right;
+    color: #aaa;
+    a {
+      font-weight: bold;
+      color: white;
+      &:hover {
+        color: #aaa;
       }
     }
   }
