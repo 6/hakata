@@ -36,6 +36,7 @@ toggle_edit_list = () ->
   $('.standard_title.list').toggle()
   $('.edit_list_form').toggle()
   $('.edit_list_button').toggleClass('down')
+  $('.delete_list_button').toggleClass('down')
   
 
 # Le bindings

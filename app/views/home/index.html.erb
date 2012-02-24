@@ -1,6 +1,19 @@
 <% title false %>
 
 <aside>
+  <div class="list">
+    <h3>Lists</h3>
+    <ul>
+      <% @user_lists.each_with_index do |l, i| %>
+        <li><%= link_to l.name, l %></li>
+        <% if i == 5 %>
+          <li><%= link_to 'More…', 'users/'+current_user.id.to_s+'/lists' %></li>
+          <% break %>
+        <% end %>    
+      <% end %>
+    </ul>
+  </div>
+
   <div class="new_fact_button">
     <a href="/facts/new">Create new fact</a>
   </div>
@@ -9,25 +22,3 @@
     <a href="/lists/new">Create new list</a>
   </div>
 </aside>
-
-<ul>
-  <li><strong>Ideas</strong></li>
-  <li>Hot mnemonics (facts)</li>
-  <li>Hot lists</li>
-</ul>
-
-<div id="hot_lists">
-  <% @lists.each do |l| %>
-    <div class="list">
-      <h3><%= link_to l.name, l %></h3>
-      <% i = 0 %>
-      <% l.facts.each do |f| %>
-        <div class="fact">
-          <p><%= link_to f.name, '/lists/'+l.id.to_s+'/facts/'+f.id.to_s %></p>
-        </div>
-        <% if i == 3 then break end %>
-        <% i = i+1 %>
-      <% end %>      
-    </div>
-  <% end %>
-</div>

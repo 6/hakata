@@ -1,0 +1,78 @@
+/* Edit List
+============================*/
+.edit_list_button {
+  background-color: #ddd;
+  color: #222;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 1px #fff;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 0 10px;
+  border-bottom: solid 3px #999;
+  border-top: none;
+  &:hover {
+    cursor: pointer;
+    background-color: #ccc;
+  }
+}
+.edit_list_button.down {
+  background-color: #1b9234;
+  color: #fff;
+  text-shadow: 0 -1px 1px #0b3c15;
+  border-top: solid 3px #105920;
+  border-left: solid 1px #136725;
+  border-right: solid 1px #136725;
+  border-bottom: none;
+}
+.edit_list_form {
+  display: none;
+  padding: 0 0 40px;
+  border-bottom: solid 1px #ddd;
+  .field {
+    margin: 0 0 10px;
+  }
+  input[type='text'] {
+    font-size: 32px;
+    height: 45px;
+    color: #444;
+    letter-spacing: -1px;
+    font-weight: bold;
+    width: 615px;
+  }
+  textarea {
+    font-size: 14px;
+    color: #222;
+    width: 615px;
+    height: 80px;
+  } 
+  
+}
+
+/* Delete List
+============================*/
+.delete_list_button {
+  display: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 0 10px;
+  background-color: #f1494c;
+  color: #fff;
+  text-shadow: 0 -1px 1px #560708;
+  border-top: none;
+  border-right: solid 1px #a50d10;
+  border-left: solid 1px #a50d10;
+  border-bottom: solid 3px #860b0d;  
+  &:hover {
+    cursor: pointer;
+    background-color: #f3696b;
+    color: white;
+  }
+}
+.delete_list_button.down {
+  display: block;
+}

@@ -29,6 +29,8 @@
 <div id="right_column">  
   <div class="edit_list_button">Edit list</div>
   
+  <%= link_to 'Delete list', @list, :confirm => 'Are you sure?', :method => :delete, :class => 'delete_list_button' %>
+  
   <div class="new_fact_button">
     <a href="/facts/new?list_id=<%= @list.id %>">Add new fact</a>
   </div>

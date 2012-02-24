@@ -1,5 +1,7 @@
 class FactsController < ApplicationController
 
+  before_filter :initialize_cardview
+
   # GET /facts
   # GET /facts.json
   def index
@@ -113,4 +115,12 @@ class FactsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  private
+  
+  def initialize_cardview
+    # Determine Flashcard View
+    session[:cardview] ||= 'off'
+  end
+  
 end

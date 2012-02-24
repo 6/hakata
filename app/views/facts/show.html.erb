@@ -112,7 +112,7 @@ end
           <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
             <h2><%= @previous.name %></h2>
           <% else %>
-            <h2><%= @previous.definition[0,10] %></h2>
+            <h2><%= @previous.definition[0,30] %></h2>
           <% end %>
         </a>
       <% end %>
@@ -122,7 +122,7 @@ end
           <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
             <h2><%= @next.name %></h2>
           <% else %>
-            <h2><%= @next.definition[0,10] %></h2>
+            <h2><%= @next.definition[0,30] %></h2>
           <% end %>
         </a>
       <% end %>
