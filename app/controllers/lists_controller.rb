@@ -17,6 +17,8 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @list = List.find(params[:id])
+    @facts = Fact.find(:all, :joins => [:lists, :listizations], :conditions => ['lists.id=?', @list.id], :order => 'listizations.position')
+     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @list }
@@ -27,7 +29,6 @@ class ListsController < ApplicationController
   # GET /lists/new.json
   def new
     @list = List.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @list }
@@ -42,8 +43,14 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(params[:list])
-    current_user.lists << @list 
+    @list = List.new(params[:list]) 
+    
+    current_user.lists << @list
+    
+    activity = current_user.activities.create
+    activity.verb = 'created'
+    activity.list = @list
+    activity.save
 
     respond_to do |format|
       if @list.save
@@ -91,4 +98,12 @@ class ListsController < ApplicationController
     
     redirect_to @list
   end
+  
+  def sort
+    params[:fact].each_with_index do |id, index|
+      Listization.update_all({position: index+1}, {fact_id: id})
+    end
+    render nothing: true
+  end  
+  
 end

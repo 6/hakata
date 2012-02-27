@@ -30,6 +30,10 @@
       <%= f.text_area :description %><br />
     </div>
   </div>
-
+  
+  <% if @list_id %>
+    <%= hidden_field_tag :list_id, @list_id %>
+  <% end %>
+  
 <% end %>
 

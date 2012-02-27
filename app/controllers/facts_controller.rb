@@ -46,8 +46,7 @@ class FactsController < ApplicationController
   def new
     @fact = Fact.new
     if params[:list_id]
-      @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
-      @list.facts << @fact
+      @list_id = params[:list_id]
     end
     
     @lists = List.all
@@ -67,10 +66,12 @@ class FactsController < ApplicationController
   # POST /facts
   # POST /facts.json
   def create
-    params[:fact][:field_id] = params[:fact][:field_id].to_i # stupidity
     @fact = Fact.new(params[:fact])
     
-    puts "DEBUG LIKE A MONKEY ==================="
+    if params[:list_id]
+      @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
+      @list.facts << @fact
+    end
 
     respond_to do |format|
       if @fact.save

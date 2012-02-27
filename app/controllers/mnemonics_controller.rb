@@ -47,6 +47,15 @@ class MnemonicsController < ApplicationController
 
     @fact = Fact.find(:first, :conditions => ['id=?', params[:mnemonic][:fact_id]])
     
+    activity = current_user.activities.create
+    activity.fact = @fact
+    activity.mnemonic = @mnemonic
+    if params[:list_id]
+      @list = List.find_by_id(params[:list_id])
+      activity.list = @list
+    end
+    activity.save
+    
     @fact.mnemonics << @mnemonic
 
     respond_to do |format|

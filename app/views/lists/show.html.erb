@@ -13,13 +13,24 @@
     <%= render 'form' %>
   </div>
   
-  <ul class="standard_list fact_list">
-    <% @list.facts.each do |t| %>
-      <li>
+  <ul class="standard_list fact_list" id="facts" data-update-url="<%= sort_lists_url %>">
+    <% save = nil %>
+    <% @facts.each do |t| %>
+      <% next if save == t %>
+      <li id="fact_<%= t.id %>" class="clearfix">
         <a href="<%= '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s+'/remove' %>" class="delete">
           <%= image_tag 'delete.png' %>
         </a>
-        <h2><%= link_to t.name, '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s %></h2>
+        <h2>
+          <span class="position">
+            <%= echo_position t.listizations, @list %>
+          </span>
+          <span class="handle">
+            三
+          </span>
+          <%= link_to t.name, '/lists/'+@list.id.to_s+'/facts/'+t.id.to_s %>
+        </h2>
+        <% save = t %>
       </li>
     <% end %>
   </ul>

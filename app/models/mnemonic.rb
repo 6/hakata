@@ -2,6 +2,7 @@ class Mnemonic < ActiveRecord::Base
   belongs_to :fact
   belongs_to :user
   has_many :votes
+  has_many :activities, :dependent => :destroy
   
   def users_vote()
     return Vote.find(:first, :conditions => ['user_id=? AND mnemonic_ID=?', current_user.id, mnemonic.id])

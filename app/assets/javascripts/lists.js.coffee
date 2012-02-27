@@ -3,7 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('#targets').sortable
+  $('#facts').sortable
     axis: 'y'
+    handle: '.handle'
     update: ->
+      console.log("Sort UI call successful, moving to POST")
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

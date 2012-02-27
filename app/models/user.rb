@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :activities
   has_many :mnemonics
   has_many :votes
   has_many :lists

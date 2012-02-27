@@ -78,7 +78,9 @@ end
           <%= f.label :body, 'A mnemonic' %><br />
           <%= f.text_area :body, :rows => 4 %>
         </p>
-    
+        <% if @list %>
+          <%= hidden_field_tag :list_id, @list.id %>
+        <% end %>
         <%= f.hidden_field :fact_id, :value => @fact.id %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
 

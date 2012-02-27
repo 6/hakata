@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+  def echo_position(listizations, list)
+    output = ''
+    listizations.each do |lz|
+      if lz.list_id == list.id
+        output = lz.position.to_s
+      end
+    end
+    return output
+  end
+
   def title(page_title)
     if page_title
       content_for(:title) { page_title + ' | Lazy Genius' }

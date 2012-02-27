@@ -35,6 +35,8 @@ toggle_edit_list = () ->
   $('.fact_list .delete').toggle()
   $('.standard_title.list').toggle()
   $('.edit_list_form').toggle()
+  $('.position').toggle()
+  $('.handle').toggle()
   $('.edit_list_button').toggleClass('down')
   $('.delete_list_button').toggleClass('down')
   

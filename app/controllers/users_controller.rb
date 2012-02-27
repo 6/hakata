@@ -2,12 +2,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @facts = Fact.find(:all,
-                           :joins => :mnemonics, 
-                           :conditions => ["mnemonics.user_id=?", @user.id])
-    @best = Fact.find(:all,
-                        :joins => :mnemonics,
-                        :conditions => ["mnemonics.user_id=? AND mnemonics.best=?", @user.id, true])
+    @activities = @user.activities.order('created_at DESC')
+    @lists = @user.lists.order('created_at DESC')
 
     respond_to do |format|
       format.html # show.html.erb

@@ -13,7 +13,7 @@ Hakata::Application.routes.draw do
   match 'lists/:list_id/facts/:id' => 'facts#show'
   get 'users/:id/lists' => 'users#lists'
   root :to => 'home#index'
-  resources :lists do 
-    collection { post :sort}
+  resources :lists do
+    collection { post :sort }
   end
 end
