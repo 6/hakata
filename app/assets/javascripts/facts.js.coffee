@@ -52,7 +52,7 @@ $ ->
 $ ->
   $('#center_mode').click -> 
     $.post '/sessions/cardview',
-      view: 'center'
+      view: 'off'
       (data) -> mode_center()
       
 $ ->

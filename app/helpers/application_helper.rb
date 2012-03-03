@@ -36,11 +36,11 @@ module ApplicationHelper
     output = "style='display:none;'"
     if !list_mode_off && position == 'front' && session[:cardview] == 'front'
       output = ''
-    elsif !list_mode_off && position == 'center' && session[:cardview] == 'center'
+    elsif !list_mode_off && position == 'off' && session[:cardview] == 'off'
       output = ''
     elsif !list_mode_off && position == 'back' && session[:cardview] == 'back' 
       output = '' 
-    elsif list_mode_off && position == 'center'
+    elsif list_mode_off && position == 'off'
       output = ''
     end
     return output

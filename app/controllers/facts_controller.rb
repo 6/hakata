@@ -123,7 +123,11 @@ class FactsController < ApplicationController
   
   def initialize_cardview
     # Determine Flashcard View
-    session[:cardview] ||= 'off'
+    if session[:cardview] != 'off' ||
+       session[:cardview] != 'back' ||
+       session[:cardview] != 'front'
+       session[:cardview] = 'off'
+    end
   end
   
 end

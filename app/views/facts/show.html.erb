@@ -1,5 +1,5 @@
 <%
-if session[:cardview] == 'front' || session[:cardview] == 'center'
+if session[:cardview] == 'front' || session[:cardview] == 'off'
   title @fact.name
 else
   title @fact.definition[0,10]
@@ -36,7 +36,7 @@ end
   </div>
 </section>
 
-<section id="center" <%= view_display_none? 'center', @list.nil? %>>
+<section id="center" <%= view_display_none? 'off', @list.nil? %>>
 
   <div class="knowledge clearfix">
     <div id="card_front">
@@ -136,7 +136,7 @@ end
       <% if @previous %>
         <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
           <h5>Previous &#8593;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
             <h2><%= @previous.name %></h2>
           <% else %>
             <h2><%= @previous.definition[0,30] %></h2>
@@ -146,7 +146,7 @@ end
       <% if @next %>
         <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
           <h5>Next &#8595;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'center' %>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
             <h2><%= @next.name %></h2>
           <% else %>
             <h2><%= @next.definition[0,30] %></h2>
@@ -161,7 +161,7 @@ end
       <h4>Flashcard Mode</h4>
       <div class="button_container clearfix">
         <span id="front_mode" class="front <%= 'front_pressed' if session[:cardview] == 'front' %>">front</span>
-        <span id="center_mode" class="center <%= 'center_pressed' if session[:cardview] == 'center' %>">off</span>
+        <span id="center_mode" class="center <%= 'center_pressed' if session[:cardview] == 'off' %>">off</span>
         <span id="back_mode" class="back <%= 'back_pressed' if session[:cardview] == 'back' %>">back</span>
       </div>
     </div>
