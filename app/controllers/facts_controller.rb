@@ -29,11 +29,13 @@ class FactsController < ApplicationController
     # get all lists this mofo is a part of
     @member_lists = List.find(:all, :joins => :listizations, :conditions => ['listizations.fact_id = ?', @fact.id])
     
-    @mnemonics = @fact.mnemonics.sort_by{ |obj| obj.score.to_i }.reverse
+    @mnemonics = @fact.mnemonics.sort_by{ |m| m.votes.count }.reverse    
     
     if current_user
       @moukaita = Mnemonic.find(:first, :conditions => ['fact_id = ? AND user_id = ?', @fact.id, current_user.id])
     end
+    
+    @vote = Vote.new
 
     respond_to do |format|
       format.html # show.html.erb

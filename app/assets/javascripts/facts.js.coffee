@@ -39,7 +39,6 @@ toggle_edit_list = () ->
   $('.handle').toggle()
   $('.edit_list_button').toggleClass('down')
   $('.delete_list_button').toggleClass('down')
-  
 
 # Le bindings
 # ================================= #
@@ -73,6 +72,19 @@ $ ->
 $ ->
   $('.edit_list_button').click -> 
     toggle_edit_list()
+    
+$ ->
+  $('.up, .down').click ->
+    $(this).next().submit()
+
+$ -> 
+  $('.reverse_up, .reverse_down').click ->
+    vote_id = $(this).data('vote-id')  
+    $.ajax '/votes/'+vote_id,
+      type: 'DELETE',
+      success: (data) -> 
+        $('.reverse_up, .reverse_down').hide()        
+        $('.up, .down').show()
     
 $ ->
   $('.fact_list .delete').click (event) -> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226231127) do
+ActiveRecord::Schema.define(:version => 20120228034058) do
 
   create_table "activities", :force => true do |t|
     t.string   "verb"
@@ -76,13 +76,12 @@ ActiveRecord::Schema.define(:version => 20120226231127) do
   end
 
   create_table "mnemonics", :force => true do |t|
-    t.text      "body"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "fact_id"
-    t.integer   "score"
-    t.integer   "user_id"
-    t.boolean   "best"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "fact_id"
+    t.integer  "user_id"
+    t.boolean  "best"
   end
 
   create_table "users", :force => true do |t|
@@ -93,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20120226231127) do
     t.timestamp "updated_at"
     t.string    "name"
     t.string    "remember_me_token"
-    t.datetime  "remember_me_token_expires_at"
+    t.timestamp "remember_me_token_expires_at"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

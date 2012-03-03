@@ -52,19 +52,48 @@ end
 
   <div id="mnemonics">
     <h3>How do you remember this?</h3>
+    
     <% first = true %>
     <% @mnemonics.each do |m| %>
+      <% if m.score < 3 then first = false end %>
       <div class="mnemonic <%= (first) ? 'best' : 'regular' %>">
         <div class="heading clearfix">
           <div class="title">
             <%= "Best mnemonic - " if first %><%= link_to m.user.name, m.user %>
           </div>
           <div class="score">
-            <%= m.votes.count %>
+            <%= m.score %>
           </div>
         </div>
         <div class="body clearfix">
           <p><%= m.body %></p>
+          <div class="voting">
+            
+            <div class="up" <% if m.user_vote(current_user) then %>style="display:none;"<% end %>>&#9650;</div>
+            <%= form_for(@vote) do |f| %>
+              <%= f.hidden_field :up, :value => true %>
+              <%= f.hidden_field :mnemonic_id, :value => m.id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= hidden_field_tag :fact_id, @fact.id %>
+            <% end %>
+            
+            <div class="down" <% if m.user_vote(current_user) then %>style="display:none;"<% end %>>&#9660;</div>
+            <%= form_for(@vote) do |f| %>
+              <%= f.hidden_field :up, :value => false %>
+       			  <%= f.hidden_field :mnemonic_id, :value => m.id %>
+       			  <%= f.hidden_field :user_id, :value => current_user.id %>
+       			  <%= hidden_field_tag :fact_id, @fact.id %>
+            <% end %>
+            
+            <% if m.user_vote(current_user) %>
+              <div class="reverse_up" data-vote-id="<%= m.user_vote(current_user).id %>" <% if m.user_vote(current_user).up then %>style="display:none;"<% end %>>&#9651;</div>
+              <div class="reverse_down" data-vote-id="<%= m.user_vote(current_user).id %>" <% if !m.user_vote(current_user).up then %>style="display:none;"<% end %>>&#9661;</div>
+            <% else %>
+              <div class="reverse_up" data-vote-id="" style="display:none;">&#9651;</div>
+              <div class="reverse_down" data-vote-id="" style="display:none;">&#9661;</div>
+            <% end %>
+            
+          </div>
         </div>
       </div>
       <% first = false %>

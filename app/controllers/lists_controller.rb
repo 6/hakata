@@ -48,7 +48,7 @@ class ListsController < ApplicationController
     current_user.lists << @list
     
     activity = current_user.activities.create
-    activity.verb = 'created'
+    activity.verb = 'created the list'
     activity.list = @list
     activity.save
 

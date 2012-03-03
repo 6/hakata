@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+  def already_voted? m
+    m.votes.each do |v|
+      if v.user_id = current_user.id
+        return true
+      end
+    end
+    return false
+  end
+
   def echo_position(listizations, list)
     output = ''
     listizations.each do |lz|
