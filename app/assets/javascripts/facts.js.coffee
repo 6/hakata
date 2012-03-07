@@ -3,11 +3,11 @@ $ ->
 
 next_fact = () ->
   $('.key.right').addClass('pressed')
-  window.location = $('.next').attr('href') if $('.next').is('*')
+  window.location = $('.next').attr('href')
   
 previous_fact = () ->
   $('.key.left').addClass('pressed')
-  window.location = $('.previous').attr('href') if $('.previous').is('*')
+  window.location = $('.previous').attr('href')
 
 mode_front = () ->
   $('#front_mode').addClass('front_pressed')
@@ -96,7 +96,8 @@ $ ->
     $.post '/facts/set_key_bindings',
       key_bindings: 'true'
       (data) ->
-        $(this).hide()
+        $('#turn_key_bindings_on').hide()
+        $('#turn_key_bindings_off').show()
         $('#key_bindings').show()
         $('#key_bindings').data('key-bindings', true)
     
@@ -106,29 +107,34 @@ $ ->
       key_bindings: 'false'
       (data) ->
         $('#turn_key_bindings_on').show()
+        $('#turn_key_bindings_off').hide()
         $('#key_bindings').hide()
         $('#key_bindings').data('key-bindings', false)
 
 $ ->
+  $('.key.right, .key.left').hover ->
+    $(this).toggleClass('hovering')
+
+$ ->
   $('.key.right').click ->
-    next_fact()
+    next_fact() if $('.next').is('*')
 
 $ ->
   $('.key.left').click -> 
-    previous_fact()
+    previous_fact() if $('.previous').is('*')
 
 # The proceeding two may break in non-webkit browsers
 
 $ ->
   $(document).keydown( (e) ->
     if e.keyCode == 37 && $('#key_bindings').data('key-bindings') == true
-      previous_fact()
+      previous_fact() if $('.previous').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
     if e.keyCode == 39 && $('#key_bindings').data('key-bindings') == true
-      next_fact()
+      next_fact() if $('.next').is('*')
   );
 
 # Voting

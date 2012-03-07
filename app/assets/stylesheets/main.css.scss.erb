@@ -30,15 +30,19 @@ body {
 
 header {
   margin: 0 0 50px;
-  background-color: #100420;
+  background-color: #01243B;
   border-bottom: solid 1px #ccc;
   #top {
-    padding: 7px 0 2px;
+    padding: 0 0 3px;
   }
   #bottom {
-    border-top: solid 1px #444;
-    border-bottom: solid 1px #888;
-    padding: 7px 0;
+    background-color: #5288DB;
+    border-top: solid 1px #7ca5e4;
+    border-bottom: solid 1px #2b6ccf;
+  }
+  .runner {
+    border-top: dashed 1px #c2d5f2;
+    margin: 2px 0;
   }
   .inner {
     margin: 0 auto;
@@ -46,28 +50,32 @@ header {
   }
   h1 a {
     color: white;
-    font-size: 22px;
-    width: 199px;
-    height: 49px;
-    background-image: url(<%= asset_path 'MORRIS.jpg' %>);
+    font-size: 36px;
     display: block;
+    height: 62px;
+    width: 252px;
   }
   ul {
     list-style: none;
-    margin: 0 0 0;
+    margin: 7px 0;
     li {
       display: inline;
       margin: 0 20px 0 0;
       a {
+        text-shadow: 0 -1px 1px #1f4e97;
         color: white;
         font-weight: bold;
         font-size: 13px;
+        &:hover {
+          color: #b4ccef;
+        }
       }
     }
   }
   #login_status {
     float: right;
     color: #aaa;
+    margin: 41px 0 0;
     a {
       font-weight: bold;
       color: white;

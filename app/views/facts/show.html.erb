@@ -127,27 +127,51 @@ end
   <div id="controls">
     <section id="list_titles">
       <h2><%= link_to @list.name, @list %></h2>
-      <p><%= @list.description %></p>
     </section>
     <section id="list_data">
+      <p><%= @list.description %></p>
       <ul>
         <li><strong>Facts:&nbsp;</strong><%= @list.facts.count %></li>
-        <li><strong>Green mnemonics:&nbsp;</strong><%= @list.greens %> (<%= @list.greens_percent %>%)</li>
+        <li>
+          <span id="green_mnemonics"><strong>Green mnemonics:&nbsp;</strong><%= @list.greens %> (<%= @list.greens_percent %>%)</span>
+          <span id="bar" style="width: <%= @list.greens_percent*2.4 %>px;"></span>
+          <span id="bar_underling"></span>
+        </li>
       </ul>
-    </section>
-    <section id="percent_complete">
-      <div class="bar" style="width: <%= @list.greens_percent*2.4 %>px;">
-      </div>
-    </section>    
+    </section> 
+    <h3>Navigation</h3>
+    <section id="list_navigation">
+      <% if @previous %>
+        <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
+          <h5>Previous &#8593;</h5>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
+            <h2><%= @previous.name %></h2>
+          <% else %>
+            <h2><%= @previous.definition[0,30] %></h2>
+          <% end %>
+        </a>
+      <% end %>
+      <% if @next %>
+        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
+          <h5>Next &#8595;</h5>
+          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
+            <h2><%= @next.name %></h2>
+          <% else %>
+            <h2><%= @next.definition[0,30] %></h2>
+          <% end %>
+        </a>
+      <% end %>
+    </section>  
+    <h3>
+      Key Controls
+      <span id="turn_key_bindings_on" <%= hide if session[:key_bindings] %>>turn on</span>
+      <span id="turn_key_bindings_off" <%= hide if !session[:key_bindings] %>>turn off</span>    
+    </h3>
     <section id="key_bindings" <%= hide if !session[:key_bindings] %> data-key-bindings="<%= session[:key_bindings] %>">
       <div class="key up">&#9650;</div>
       <div class="key left">&#9664;</div>
       <div class="key right">&#9654;</div>
       <div class="key down">&#9660;</div>
-      <p id="turn_key_bindings_off">turn off</p>
-    </section>
-    <section id="turn_key_bindings_on" <%= hide if session[:key_bindings] %>>
-      turn key bindings on
     </section>
     <h3>Owners</h3>
     <section id="owners">
@@ -170,34 +194,6 @@ end
         <span>El Jefe</span>
       </a>
   </div>
-
-  <% if @list %>
-    <div id="new_list_nav">
-      <div class="list_identity">
-        <h2><%= link_to @list.name, @list %></h2>
-      </div>
-      <% if @previous %>
-        <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
-          <h5>Previous &#8593;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
-            <h2><%= @previous.name %></h2>
-          <% else %>
-            <h2><%= @previous.definition[0,30] %></h2>
-          <% end %>
-        </a>
-      <% end %>
-      <% if @next %>
-        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
-          <h5>Next &#8595;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
-            <h2><%= @next.name %></h2>
-          <% else %>
-            <h2><%= @next.definition[0,30] %></h2>
-          <% end %>
-        </a>
-      <% end %>
-    </div>
-  <% end %>
   
   <% if @list %>
     <div id="card_mode">
