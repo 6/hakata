@@ -1,0 +1,131 @@
+#controls {
+  background-color: #340e6b;
+  margin: 0 0 20px;
+  border: solid 1px #100420;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px #666;
+  section {
+    border-bottom: solid 1px #000;
+    border-top: solid 1px #671cd4;
+    &:first-child { border-top: none; }
+    &:last-child { border-bottom: none; }
+  }
+  h3 {
+    border-top: solid 1px #671cd4;
+    border-bottom: solid 1px #000;
+    background-color: #431289;
+    padding: 4px;
+    color: white;
+    font-size: 12px;
+  }
+  #list_titles {
+    padding: 8px;
+    h2 a {
+      color: white;
+      font-size: 20px;
+      &:hover {
+        color: #ccc;
+      }
+    }
+    p {
+      margin: 5px 0 0;
+      color: white;
+      font-size: 11px;
+    }
+  }
+  #list_data {
+    padding: 4px 8px;
+    ul {
+      list-style: none;
+      margin: 0;
+      li {
+        color: white;
+        padding: 2px 0;
+      }
+    }
+  }
+  #percent_complete {
+    .bar {
+      background-color: #40d634;
+      height: 20px;
+    }
+  }
+  #key_bindings {
+    height: 100px;
+    position: relative;
+    padding: 8px;
+    color: white;
+    background-color: #4a1498;
+    .key {
+      padding: 10px 3px 10px 10px;
+      width: 20px;
+      background-color: #955bea;
+      border-radius: 6px;
+      border-bottom: solid 3px #782ee4;
+      &:hover {
+        background-color: #a979ee;
+        border-bottom: solid 3px #8c4ce8;
+        cursor: pointer;
+      }
+    }
+    .pressed {
+      background-color: #782ee4;
+      border-bottom: solid 1px #3b107b;
+      border-top: solid 2px #340e6b;
+    }
+    .key.up {
+      position: absolute;
+      top: 0px;
+      left: 100px;
+      margin: 10px auto 0;
+    }
+    .key.left {
+      position: absolute;
+      top: 50px;
+      left: 60px;
+    }
+    .key.right {
+      position: absolute;
+      top: 50px;
+      left: 140px;
+    }
+    .key.down {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+    }
+    #turn_key_bindings_off {
+      position: absolute;
+      top: 95px;
+      left: 12px;
+      font-size: 11px;
+      color: white;
+      &:hover {
+        cursor: pointer;
+        color: #ccc;
+        border-bottom: dotted 1px #ccc;
+      }
+    }
+  }
+  #turn_key_bindings_on {
+    padding: 8px;
+    color: white;
+  }
+  #owners {
+    .owner {
+      padding: 6px 8px;
+      color: white;
+      img {
+        float: left;
+        margin: 0 6px 0 0;
+      }
+      span {
+        float: left;
+        margin: 5px 0 0;
+      }
+      &:hover {
+        background-color: #431289;
+      }
+    }
+  }
+}

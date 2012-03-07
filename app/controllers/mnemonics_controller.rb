@@ -60,7 +60,7 @@ class MnemonicsController < ApplicationController
 
     respond_to do |format|
       if @mnemonic.save
-        format.html { redirect_to @fact, :notice => 'Mnemonic was successfully created.' }
+        format.html { redirect_to '/lists/'+@list.id.to_s+'/facts/'+@fact.id.to_s, :notice => 'Mnemonic was successfully created.' }
         format.json { render :json => @mnemonic, :status => :created, :location => @mnemonic }
       else
         format.html { render :action => "new" }
@@ -74,6 +74,10 @@ class MnemonicsController < ApplicationController
   def update
     @mnemonic = Mnemonic.find(params[:id])
     @fact = @mnemonic.fact
+    
+    if params[:list_id]
+      @list = List.find_by_id(params[:list_id])
+    end
     
     if params[:mnemonic][:score]
       if params[:mnemonic][:score] == 'up'
@@ -91,7 +95,7 @@ class MnemonicsController < ApplicationController
 
     respond_to do |format|
       if @mnemonic.update_attributes(params[:mnemonic])
-        format.html { redirect_to @fact, :notice => 'Mnemonic was successfully updated.' }
+        format.html { redirect_to '/lists/'+@list.id.to_s+'/facts/'+@fact.id.to_s, :notice => 'Mnemonic was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

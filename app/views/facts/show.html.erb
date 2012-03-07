@@ -67,30 +67,25 @@ end
         </div>
         <div class="body clearfix">
           <p><%= m.body %></p>
-          <div class="voting">
-            
-            <div class="up" <% if m.user_vote(current_user) then %>style="display:none;"<% end %>>&#9650;</div>
-            <%= form_for(@vote) do |f| %>
-              <%= f.hidden_field :up, :value => true %>
-              <%= f.hidden_field :mnemonic_id, :value => m.id %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= hidden_field_tag :fact_id, @fact.id %>
-            <% end %>
-            
-            <div class="down" <% if m.user_vote(current_user) then %>style="display:none;"<% end %>>&#9660;</div>
-            <%= form_for(@vote) do |f| %>
-              <%= f.hidden_field :up, :value => false %>
-       			  <%= f.hidden_field :mnemonic_id, :value => m.id %>
-       			  <%= f.hidden_field :user_id, :value => current_user.id %>
-       			  <%= hidden_field_tag :fact_id, @fact.id %>
+          <div class="voting">            
+            <% if !m.user_vote(current_user) %>
+              <div class="up_vote" data-mnemonic-id="<%= m.id %>">&#9650;</div>
+              <div class="down_vote" data-mnemonic-id="<%= m.id %>">&#9660;</div>
+            <% else %>
+              <div class="up_vote" data-mnemonic-id="<%= m.id %>" <%= hide %>>&#9650;</div>
+              <div class="down_vote" data-mnemonic-id="<%= m.id %>" <%= hide %>>&#9660;</div>
             <% end %>
             
             <% if m.user_vote(current_user) %>
-              <div class="reverse_up" data-vote-id="<%= m.user_vote(current_user).id %>" <% if m.user_vote(current_user).up then %>style="display:none;"<% end %>>&#9651;</div>
-              <div class="reverse_down" data-vote-id="<%= m.user_vote(current_user).id %>" <% if !m.user_vote(current_user).up then %>style="display:none;"<% end %>>&#9661;</div>
+              <div class="reverse_up" 
+                   data-vote-id="<%= m.user_vote(current_user).id %>" 
+                   <%= hide if !m.user_vote(current_user).up %>>&#9651;</div>
+              <div class="reverse_down" 
+                   data-vote-id="<%= m.user_vote(current_user).id %>" 
+                   <%= hide if m.user_vote(current_user).up %>>&#9661;</div>
             <% else %>
-              <div class="reverse_up" data-vote-id="" style="display:none;">&#9651;</div>
-              <div class="reverse_down" data-vote-id="" style="display:none;">&#9661;</div>
+              <div class="reverse_up" <%= hide %>>&#9651;</div>
+              <div class="reverse_down" <%= hide %>>&#9661;</div>
             <% end %>
             
           </div>
@@ -127,7 +122,55 @@ end
 
 </div>
 
-<div id="right_column">
+<aside>
+
+  <div id="controls">
+    <section id="list_titles">
+      <h2><%= link_to @list.name, @list %></h2>
+      <p><%= @list.description %></p>
+    </section>
+    <section id="list_data">
+      <ul>
+        <li><strong>Facts:&nbsp;</strong><%= @list.facts.count %></li>
+        <li><strong>Green mnemonics:&nbsp;</strong><%= @list.greens %> (<%= @list.greens_percent %>%)</li>
+      </ul>
+    </section>
+    <section id="percent_complete">
+      <div class="bar" style="width: <%= @list.greens_percent*2.4 %>px;">
+      </div>
+    </section>    
+    <section id="key_bindings" <%= hide if !session[:key_bindings] %> data-key-bindings="<%= session[:key_bindings] %>">
+      <div class="key up">&#9650;</div>
+      <div class="key left">&#9664;</div>
+      <div class="key right">&#9654;</div>
+      <div class="key down">&#9660;</div>
+      <p id="turn_key_bindings_off">turn off</p>
+    </section>
+    <section id="turn_key_bindings_on" <%= hide if session[:key_bindings] %>>
+      turn key bindings on
+    </section>
+    <h3>Owners</h3>
+    <section id="owners">
+      <a href="/" class="owner clearfix">
+        <img src="http://dummyimage.com/30x25/000000/ff00ff.jpg" />
+        <span>Jeff Carpenter</span>
+      </a>
+      <a href="/" class="owner clearfix">
+        <img src="http://dummyimage.com/30x25/000000/ff00ff.jpg" />
+        <span>El Jefe</span>
+      </a>
+    </section>
+    <h3>Followers</h3>
+      <a href="/" class="owner clearfix">
+        <img src="http://dummyimage.com/30x25/000000/ff00ff.jpg" />
+        <span>Jeff Carpenter</span>
+      </a>
+      <a href="/" class="owner clearfix">
+        <img src="http://dummyimage.com/30x25/000000/ff00ff.jpg" />
+        <span>El Jefe</span>
+      </a>
+  </div>
+
   <% if @list %>
     <div id="new_list_nav">
       <div class="list_identity">
@@ -179,4 +222,4 @@ end
   <% end %>
   
   <%= render 'add_to_list' %>
-</div>
+</aside>

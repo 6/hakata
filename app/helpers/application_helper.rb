@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def hide
+    return "style='display:none;'"
+  end
+
   def already_voted? m
     m.votes.each do |v|
       if v.user_id = current_user.id

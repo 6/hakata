@@ -4,6 +4,7 @@ Hakata::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
   get 'users/:id/lists' => 'users#lists'
+  post 'facts/set_key_bindings' => 'facts#set_key_bindings'
 
   resources :facts
   resources :lists

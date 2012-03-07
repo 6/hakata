@@ -21,6 +21,8 @@ group :production do
   gem 'pg'
 end
 
+gem 'awesome_print'
+
 gem 'execjs'
 gem 'therubyracer'
 

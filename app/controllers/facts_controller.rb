@@ -19,12 +19,10 @@ class FactsController < ApplicationController
     @fact = Fact.find(params[:id])
     @mnemonic = Mnemonic.new
     @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'updated_at DESC')
-    @list = List.find(params[:list_id]) if params[:list_id]
-    if @list  
-      @listization = Listization.find(:first, :conditions => ['list_id = ? AND fact_id = ?', @list.id, @fact.id])
-      @next = Fact.find(:first, :joins => :listizations, :conditions => ['listizations.id > ? AND listizations.list_id = ?', @listization.id, @list.id])
-      @previous = Fact.find(:last, :joins => :listizations, :conditions => ['listizations.id < ? AND listizations.list_id = ?', @listization.id, @list.id])
-    end
+    @list = List.find(params[:list_id]) if params[:list_id] 
+    @listization = Listization.find(:first, :conditions => ['list_id = ? AND fact_id = ?', @list.id, @fact.id])
+    @next = @fact.next_in_list(@list, @listization)
+    @previous = @fact.previous_in_list(@list, @listization)
     
     # get all lists this mofo is a part of
     @member_lists = List.find(:all, :joins => :listizations, :conditions => ['listizations.fact_id = ?', @fact.id])
@@ -117,6 +115,17 @@ class FactsController < ApplicationController
       format.html { redirect_to facts_url }
       format.json { head :ok }
     end
+  end
+
+  def set_key_bindings
+    puts params[:key_bindings]
+    if params[:key_bindings] == 'true'
+      session[:key_bindings] = true
+    elsif params[:key_bindings] == 'false'
+      session[:key_bindings] = false
+    end
+    puts session[:key_bindings]
+    render nothing: true
   end
   
   private
