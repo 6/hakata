@@ -21,8 +21,10 @@ class FactsController < ApplicationController
     @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'updated_at DESC')
     @list = List.find(params[:list_id]) if params[:list_id] 
     @listization = Listization.find(:first, :conditions => ['list_id = ? AND fact_id = ?', @list.id, @fact.id])
-    @next = @fact.next_in_list(@list, @listization)
-    @previous = @fact.previous_in_list(@list, @listization)
+    @previous = @fact.previous_in_list(@list)
+    @two_back = @fact.two_back_in(@list)
+    @next = @fact.next_in_list(@list)
+    @two_forward = @fact.two_forward_in(@list)
     
     # get all lists this mofo is a part of
     @member_lists = List.find(:all, :joins => :listizations, :conditions => ['listizations.fact_id = ?', @fact.id])

@@ -130,6 +130,7 @@ end
     </section>
     <section id="list_data">
       <p><%= @list.description %></p>
+      <div class="divider"></div>
       <ul>
         <li><strong>Facts:&nbsp;</strong><%= @list.facts.count %></li>
         <li>
@@ -141,26 +142,44 @@ end
     </section> 
     <h3>Navigation</h3>
     <section id="list_navigation">
+      <% if @two_back %>
+        <div class="two_back">
+          <a href="/lists/<%= @list.id %>/facts/<%= @two_back.id %>">
+            <div class="name"><%= @two_back.listization(@list).position %> <%= @two_back.name %></div>
+          </a>
+        </div>
+      <% end %>
+      
       <% if @previous %>
-        <a class="previous" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@previous.id.to_s %>">
-          <h5>Previous &#8593;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
-            <h2><%= @previous.name %></h2>
-          <% else %>
-            <h2><%= @previous.definition[0,30] %></h2>
-          <% end %>
-        </a>
+        <div class="previous">
+          <a href="/lists/<%= @list.id %>/facts/<%= @previous.id %>">
+            <div class="name"><%= @previous.listization(@list).position %> <%= @previous.name %></div>
+          </a>
+        </div>
       <% end %>
+
+      <div class="current">
+        <a href="/lists/<%= @list.id %>/facts/<%= @fact.id %>">
+          <div class="name"><%= @fact.listization(@list).position %> <%= @fact.name %></div>
+        </a>
+      </div>
+      
       <% if @next %>
-        <a class="next" href="<%= '/lists/'+@list.id.to_s+'/facts/'+@next.id.to_s %>">
-          <h5>Next &#8595;</h5>
-          <% if session[:cardview] == 'front' || session[:cardview] == 'off' %>
-            <h2><%= @next.name %></h2>
-          <% else %>
-            <h2><%= @next.definition[0,30] %></h2>
-          <% end %>
-        </a>
+        <div class="next">
+          <a href="/lists/<%= @list.id %>/facts/<%= @next.id %>">
+            <div class="name"><%= @next.listization(@list).position %> <%= @next.name %></div>
+          </a>
+        </div>
       <% end %>
+      
+       <% if @two_forward %>
+        <div class="two_forward">
+          <a href="/lists/<%= @list.id %>/facts/<%= @two_forward.id %>">
+            <div class="name"><%= @two_forward.listization(@list).position %> <%= @two_forward.name %></div>
+          </a>
+        </div>
+      <% end %>
+
     </section>  
     <h3>
       Key Controls

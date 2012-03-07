@@ -3,11 +3,11 @@ $ ->
 
 next_fact = () ->
   $('.key.right').addClass('pressed')
-  window.location = $('.next').attr('href')
+  window.location = $('.next a').attr('href')
   
 previous_fact = () ->
   $('.key.left').addClass('pressed')
-  window.location = $('.previous').attr('href')
+  window.location = $('.previous a').attr('href')
 
 mode_front = () ->
   $('#front_mode').addClass('front_pressed')

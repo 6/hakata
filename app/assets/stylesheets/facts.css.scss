@@ -88,9 +88,31 @@
   #list_navigation {
     border-left: solid 1px #888;
     border-right: solid 1px #888;
+    .two_back, .two_forward {
+      padding: 6px 8px;
+      background-color: #012e4c;
+      .name {
+        color: white;
+      }
+    }
     .previous, .next {
       padding: 8px;
-      color: white;
+      background-color: #02436d;
+      .name {
+        color: white;
+      }
+    }
+    .current {
+      padding: 10px 8px;
+      background-color: #02578e;
+      .name {
+        color: white;
+      }
+    }
+    .divider {
+      margin: 0 8px;
+      border-bottom: solid 1px #02436d;
+      border-top: solid 1px #000509;
     }
   }
   #key_bindings {
