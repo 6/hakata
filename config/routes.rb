@@ -17,7 +17,7 @@ Hakata::Application.routes.draw do
   match 'lists/:list_id/facts/:fact_id/remove' => 'lists#removeFact'
   match 'lists/:list_id/facts/:id' => 'facts#show'
   
-  root :to => 'home#index'
+  root :to => 'front#index'
   
   resources :lists do
     collection { post :sort }

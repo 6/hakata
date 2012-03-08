@@ -129,7 +129,7 @@ end
       <h2><%= link_to @list.name, @list %></h2>
     </section>
     <section id="list_data">
-      <p><%= @list.description %></p>
+      <p><%= m @list.description %></p>
       <div class="divider"></div>
       <ul>
         <li><strong>Facts:&nbsp;</strong><%= @list.facts.count %></li>
@@ -142,10 +142,12 @@ end
     </section> 
     <h3>Navigation</h3>
     <section id="list_navigation">
+      
       <% if @two_back %>
         <div class="two_back">
           <a href="/lists/<%= @list.id %>/facts/<%= @two_back.id %>">
-            <div class="name"><%= @two_back.listization(@list).position %> <%= @two_back.name %></div>
+            <span class="position"><%= @two_back.listization(@list).position %></span>
+            <span class="name"><%= @two_back.name %></span>
           </a>
         </div>
       <% end %>
@@ -153,21 +155,24 @@ end
       <% if @previous %>
         <div class="previous">
           <a href="/lists/<%= @list.id %>/facts/<%= @previous.id %>">
-            <div class="name"><%= @previous.listization(@list).position %> <%= @previous.name %></div>
+            <span class="position"><%= @previous.listization(@list).position %></span>
+            <span class="name"><%= @previous.name %> <!-- &#9664; --></span>
           </a>
         </div>
       <% end %>
-
+      
       <div class="current">
         <a href="/lists/<%= @list.id %>/facts/<%= @fact.id %>">
-          <div class="name"><%= @fact.listization(@list).position %> <%= @fact.name %></div>
+          <span class="position"><%= @fact.listization(@list).position %></span>
+          <span class="name"><%= @fact.name %></span>
         </a>
       </div>
       
       <% if @next %>
         <div class="next">
           <a href="/lists/<%= @list.id %>/facts/<%= @next.id %>">
-            <div class="name"><%= @next.listization(@list).position %> <%= @next.name %></div>
+            <span class="position"><%= @next.listization(@list).position %></span>
+            <span class="name"><%= @next.name %> <!-- &#9654; --></span>
           </a>
         </div>
       <% end %>
@@ -175,7 +180,8 @@ end
        <% if @two_forward %>
         <div class="two_forward">
           <a href="/lists/<%= @list.id %>/facts/<%= @two_forward.id %>">
-            <div class="name"><%= @two_forward.listization(@list).position %> <%= @two_forward.name %></div>
+            <span class="position"><%= @two_forward.listization(@list).position %></span>
+            <span class="name"><%= @two_forward.name %></span>
           </a>
         </div>
       <% end %>
