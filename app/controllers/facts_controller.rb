@@ -77,8 +77,8 @@ class FactsController < ApplicationController
 
     respond_to do |format|
       if @fact.save
-        format.html { redirect_to @fact, :notice => 'fact was successfully created.' }
-        format.json { render :json => @fact, :status => :created, :location => @fact }
+        format.html { redirect_to @list, :notice => 'fact was successfully created.' }
+        format.json { render :json => @list, :status => :created, :location => @list }
       else
         format.html { render :action => "new" }
         format.json { render :json => @fact.errors, :status => :unprocessable_entity }
