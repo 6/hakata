@@ -70,10 +70,16 @@ class FactsController < ApplicationController
   def create
     @fact = Fact.new(params[:fact])
     
-    if params[:list_id]
-      @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
-      @list.facts << @fact
-    end
+    @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
+    @list.facts << @fact
+
+    
+    @facts_listization = Listization.find(:last, :conditions => ['list_id=? AND fact_id=?', @list.id, @fact.id])
+    @last = Listization.find(:last, :conditions => ['list_id=?', @list.id], :order => 'position ASC')
+    @facts_listization.position = @last.position + 1
+    @facts_listization.save
+
+    
 
     respond_to do |format|
       if @fact.save

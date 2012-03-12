@@ -26,9 +26,10 @@
 	<div id="bottom">
 	  <div class="inner clearfix">
 	    <ul>
-	      <li><%= link_to "Home", root_path %></li>
-	      <li class="selected"><%= link_to "Lists", lists_path %></li>
-	      <li><%= link_to "Facts", facts_path %></li>
+	     <li class="<%= 'selected' if params[:controller] == 'home' %>"><%= link_to "Home", root_path %></li>
+	      <li class="<%= 'selected' if params[:controller] == 'dashboard' %>"><%= link_to "Dashboard", '/dashboard' %></li>
+	      <li class="<%= 'selected' if params[:controller] == 'lists' %>"><%= link_to "Lists", lists_path %></li>
+	      <li class="<%= 'selected' if params[:controller] == 'facts' %>"><%= link_to "Facts", facts_path %></li>
 	    </ul>
 	  </div>
 	</div>	  

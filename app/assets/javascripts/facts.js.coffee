@@ -42,15 +42,6 @@ turn_back = () ->
   $('#front').hide()
   $('#center').hide()
 
-toggle_edit_list = () ->
-  $('.fact_list .delete').toggle()
-  $('.standard_title.list').toggle()
-  $('.edit_list_form').toggle()
-  $('.position').toggle()
-  $('.handle').toggle()
-  $('.edit_list_button').toggleClass('down')
-  $('.delete_list_button').toggleClass('down')
-
 # Le bindings
 # ================================= #
 
@@ -79,10 +70,6 @@ $ ->
 $ ->
   $('.return_to_center').click -> 
     turn_center()
-
-$ ->
-  $('.edit_list_button').click -> 
-    toggle_edit_list()
     
 $ ->
   $('.up, .down').click ->
@@ -127,19 +114,20 @@ $ ->
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 37 && $('#key_bindings').data('key-bindings')
+    if e.keyCode == 37 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
       previous_fact() if $('.previous').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 39 && $('#key_bindings').data('key-bindings')
+    if e.keyCode == 39 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
       next_fact() if $('.next').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 16 && $('#key_bindings').data('key-bindings')
+    if e.keyCode == 16 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
+      $('.key.shift').addClass('pressed')
       turn_center()
   );
 

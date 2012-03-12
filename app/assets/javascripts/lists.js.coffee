@@ -1,6 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+toggle_edit_list = () ->
+  $('.fact_list .delete').toggle()
+  $('.standard_title.list').toggle()
+  $('.edit_list_form').toggle()
+  $('.position').toggle()
+  $('.handle').toggle()
+  $('.edit_list_button').toggleClass('down')
+  $('.delete_list_button').toggleClass('down')
+
 
 jQuery ->
   $('#facts').sortable
@@ -9,3 +15,12 @@ jQuery ->
     update: ->
       console.log("Sort UI call successful, moving to POST")
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
+$ ->
+  $('.new_fact_button').click (e) ->
+    e.preventDefault()
+    $('.add-fact-form').show()
+    
+$ ->
+  $('.edit_list_button').click -> 
+    toggle_edit_list()

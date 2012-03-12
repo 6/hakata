@@ -167,9 +167,8 @@
     }
     .key.up {
       position: absolute;
-      top: 0px;
+      top: 10px;
       left: 100px;
-      margin: 10px auto 0;
     }
     .key.left {
       position: absolute;
@@ -185,6 +184,12 @@
       position: absolute;
       top: 50px;
       left: 100px;
+    }
+    .key.shift {
+      width: 33px;
+      position: absolute;
+      top: 10px;
+      left: 140px;
     }
   }
   #turn_key_bindings_on, #turn_key_bindings_off {

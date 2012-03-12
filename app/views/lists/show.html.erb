@@ -12,6 +12,8 @@
   <div class="edit_list_form">
     <%= render 'form' %>
   </div>
+
+  <%= render 'add_fact' %>
   
   <ul class="standard_list fact_list" id="facts" data-update-url="<%= sort_lists_url %>">
     <% save = nil %>
@@ -42,7 +44,6 @@
   
   <%= link_to 'Delete list', @list, :confirm => 'Are you sure?', :method => :delete, :class => 'delete_list_button' %>
   
-  <div class="new_fact_button">
-    <a href="/facts/new?list_id=<%= @list.id %>">Add new fact</a>
-  </div>
+  <a href="" class="blue_button new_fact_button">Add new fact</a>
+  
 </div>

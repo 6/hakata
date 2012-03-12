@@ -47,7 +47,32 @@
     width: 615px;
     height: 80px;
   } 
-  
+}
+.add-fact-form {
+  padding: 20px 0;
+  border-bottom: solid 1px #ccc;
+  h3 {
+    font-size: 22px;
+  }
+  .field {
+    input {
+      font-size: 18px;
+      width: 280px;
+    }
+  }
+  .field.name {
+    float: left;
+  }
+  .field.definition {
+    float: right;
+  }
+  .description {
+    textarea {
+      margin: 10px 0;
+      width: 615px;
+      height: 50px;
+    }
+  }
 }
 
 /* Delete List

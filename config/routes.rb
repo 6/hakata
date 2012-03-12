@@ -13,11 +13,12 @@ Hakata::Application.routes.draw do
   resources :users
   resources :votes
   
+  match '/dashboard' => 'dashboard#index'
   match 'sessions/cardview' => 'sessions#cardview'
   match 'lists/:list_id/facts/:fact_id/remove' => 'lists#removeFact'
   match 'lists/:list_id/facts/:id' => 'facts#show'
   
-  root :to => 'front#index'
+  root :to => "home#index"
   
   resources :lists do
     collection { post :sort }

@@ -1,12 +1,12 @@
 class ListsController < ApplicationController
   
-  before_filter :require_login
-  
+  before_filter :require_login 
+    
   # GET /lists
   # GET /lists.json
   def index
     @lists = List.find(:all, :order => 'updated_at DESC')
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lists }
@@ -18,6 +18,7 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @facts = Fact.find(:all, :joins => [:lists, :listizations], :conditions => ['lists.id=?', @list.id], :order => 'listizations.position')
+    @fact = Fact.new
      
     respond_to do |format|
       format.html # show.html.erb
