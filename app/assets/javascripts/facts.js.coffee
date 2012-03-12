@@ -127,14 +127,20 @@ $ ->
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 37 && $('#key_bindings').data('key-bindings') == true
+    if e.keyCode == 37 && $('#key_bindings').data('key-bindings')
       previous_fact() if $('.previous').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 39 && $('#key_bindings').data('key-bindings') == true
+    if e.keyCode == 39 && $('#key_bindings').data('key-bindings')
       next_fact() if $('.next').is('*')
+  );
+
+$ ->
+  $(document).keydown( (e) ->
+    if e.keyCode == 16 && $('#key_bindings').data('key-bindings')
+      turn_center()
   );
 
 # Voting
