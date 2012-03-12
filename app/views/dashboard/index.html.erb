@@ -1,0 +1,46 @@
+<% title false %>
+
+<section id="activity">
+  <% @activities.each do |a| %>
+    <div class="a">
+      <% if a.list && !a.mnemonic %>
+        <%= link_to a.user.name, a.user %> 
+        <%= a.verb %> 
+        <%= link_to a.list.name, a.list %>
+      <% elsif a.mnemonic %>
+        <%= link_to a.user.name, a.user %>
+        added a mnemonic to
+        <% if a.list %>
+          <%= link_to a.fact.name, '/lists/'+a.list.id.to_s+'/facts/'+a.fact.id.to_s %>
+          in <%= link_to a.list.name, a.list %>
+        <% else %>
+          <%= link_to a.fact.name, a.fact %>
+        <% end %>
+        <p><%= a.mnemonic.body %></p>
+      <% end %>
+    </div>
+  <% end %>
+</section>
+
+<aside>
+  <div class="list">
+    <h3>Lists</h3>
+    <ul>
+      <% @user_lists.each_with_index do |l, i| %>
+        <li><%= link_to l.name, l %></li>
+        <% if i == 5 %>
+          <li><%= link_to 'More…', 'users/'+current_user.id.to_s+'/lists' %></li>
+          <% break %>
+        <% end %>    
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="new_fact_button">
+    <a href="/facts/new">Create new fact</a>
+  </div>
+
+  <div class="new_list_button">
+    <a href="/lists/new">Create new list</a>
+  </div>
+</aside>
