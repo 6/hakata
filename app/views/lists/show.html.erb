@@ -13,7 +13,42 @@
     <%= render 'form' %>
   </div>
 
-  <%= render 'addfact' %>
+<!-- TEMPORARY -->
+<div class="add-fact-form" <%= hide %>>
+  <h3>Add New Fact</h3>
+  <%= form_for(@fact) do |f| %>
+    <% if @fact.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@fact.errors.count, "error") %> prohibited this fact from being saved:</h2>
+             
+        <ul>
+        <% @fact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="field name">  
+      <%= f.text_field :name, :placeholder => 'Name (front)' %>
+    </div>
+    
+    <div class="field definition">
+      <%= f.text_field :definition, :placeholder => 'Definition (back)' %>
+    </div>
+    
+    <div class="description">
+      <%= f.text_area :description, :placeholder => 'Description (for extra information)' %>
+    </div>
+    
+    <%= hidden_field_tag :list_id, @list.id %>
+  
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<!-- /TEMPORARY -->
   
   <ul class="standard_list fact_list" id="facts" data-update-url="<%= sort_lists_url %>">
     <% save = nil %>
