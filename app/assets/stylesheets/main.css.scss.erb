@@ -39,6 +39,8 @@ header {
     background-color: #5288DB;
     border-top: solid 1px #7ca5e4;
     border-bottom: solid 1px #2b6ccf;
+    position: relative;
+    height: 28px;
   }
   .runner {
     border-top: dashed 1px #c2d5f2;
@@ -64,11 +66,14 @@ header {
   }
   ul {
     list-style: none;
-    margin: 7px 0;
+    position: absolute;
+    top: -1px;
     li {
-      display: inline;
+      float: left;
       margin: 0 20px 0 0;
       a {
+        display: block;
+        padding: 7px;
         text-shadow: 0 -1px 1px #1f4e97;
         color: white;
         font-weight: bold;
@@ -76,6 +81,12 @@ header {
         &:hover {
           color: #b4ccef;
         }
+      }
+    }
+    li.selected {
+      a {
+        top: -1px;
+        background-color: #1a407b;
       }
     }
   }

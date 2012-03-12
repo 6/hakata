@@ -1,6 +1,6 @@
 class FactsController < ApplicationController
 
-  before_filter :initialize_cardview
+#   before_filter :initialize_cardview
 
   # GET /facts
   # GET /facts.json
@@ -134,8 +134,8 @@ class FactsController < ApplicationController
   
   def initialize_cardview
     # Determine Flashcard View
-    if session[:cardview] != 'off' ||
-       session[:cardview] != 'back' ||
+    if session[:cardview] != 'off' &&
+       session[:cardview] != 'back' &&
        session[:cardview] != 'front'
        session[:cardview] = 'off'
     end
