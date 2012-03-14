@@ -33,26 +33,6 @@
   }
 }
 
-#activity {
-  float: left;
-  width: 600px;
-  .a {
-    border-bottom: solid 1px #ddd;
-    padding: 0 0 15px;
-    margin: 0 0 15px;
-    font-size: 14px;
-    a {
-      background-color: #f8fdbf;
-      padding: 2px 0;
-    }
-    p {
-      margin: 10px 0 0;
-      font-size: 12px;
-      color: #888;
-    }
-  }
-}
-
 #lists {
   float: right;
   width: 260px;

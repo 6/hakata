@@ -5,9 +5,8 @@ class DashboardController < ApplicationController
     if current_user
       @lists = List.all(:limit => 5)
       @user_lists = List.find(:all, :conditions => ['user_id=?', current_user.id], :order => 'created_at DESC')
-      @activities = Activity.all(:order => 'created_at DESC')
-      
-      @feed_items = current_user.feed
+            
+      @feed_items = current_user.feed.order('created_at DESC')
       
       @users = User.order('neurons DESC').limit(4)
       

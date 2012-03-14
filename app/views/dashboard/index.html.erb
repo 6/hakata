@@ -1,9 +1,10 @@
 <% title false %>
 
-<section id="activity">
+<section class="activity">
   <% if !@feed_items.empty? %>
     <% @feed_items.each do |a| %>
       <div class="a">
+        <div class="created"><%= time_ago_in_words(a.created_at) %> ago</div>
         <% if a.list && !a.mnemonic %>
           <%= link_to a.user.name, a.user %> 
           <%= a.verb %> 
