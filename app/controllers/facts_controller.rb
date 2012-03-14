@@ -70,23 +70,11 @@ class FactsController < ApplicationController
   def create
     @fact = Fact.new(params[:fact])
     @fact.save # this probably goes against convention, oh well :/
-    puts @fact.id.to_s + ' = fact id'
     @list = List.find(:first, :conditions => ['id=?', params[:list_id]])
-    puts @list.id.to_s + ' = list id'
     @list.facts << @fact
-    puts 'fact added to list.facts'    
     @facts_listization = Listization.find(:last, :conditions => ['list_id=? AND fact_id=?', @list.id, @fact.id])
-    puts 'found facts_listization'
-    @last = Listization.find(:last, :conditions => ['list_id=?', @list.id], :order => 'position ASC')
-    puts 'found last listization'
-    puts @facts_listization.position.to_s + ' is facts_listization.position'
-    puts @last.position.to_s + ' is last.position'
-    @facts_listization.position = @last.position + 1
-    puts 'updated facts_listization'
-    @facts_listization.save
-    puts 'saved facts_listization'
-
-    
+    @facts_listization.position = @list.facts.count
+    @facts_listization.save    
 
     respond_to do |format|
       if @fact.save
