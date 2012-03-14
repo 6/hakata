@@ -3,6 +3,7 @@ class VotesController < ApplicationController
   # POST /votes
   def create
     @mnemonic = Mnemonic.find(params[:mnemonic_id])
+      puts @mnemonic.id.to_s + ' is mnemonic id'
     @vote = Vote.new(params[:vote])
     @vote.up = params[:up]
     @mnemonic.votes << @vote
@@ -10,7 +11,7 @@ class VotesController < ApplicationController
     @vote.save
     
     if @vote.up
-      @mnemonic.user.neurons += 1
+      @mnemonic.user.neurons = @mnemonic.user.neurons + 1
       @mnemonic.user.save
     end
     
