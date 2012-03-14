@@ -1,37 +1,8 @@
 <% title false %>
 
-<section id="hook">
+<section class="hook">
+  <a href="/"><%= image_tag 'lzg_blackonwhite.png' %></a>
   <h1>Cold memorization is hard. So don't do it.</h1>
-</section>
-
-<section id="signup">
-  <%= form_for @user do |f| %>
-    <% if @user.errors.any? %>
-      <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-          <% for message in @user.errors.full_messages %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <p><%= f.label :email %></p>
-      <%= f.text_field :email %>
-    </div>
-
-    <div class="field">
-      <p><%= f.label :password %></p>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class="field">
-      <p><%= f.label :password_confirmation %></p>
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <div class="actions"><%= f.submit %></div>
-  <% end %>
+  <h2><a href="/signup">Sign up</a> or <a href="/login">login</a></h2>
+  <p>We make our own flashcards and silly mnemonics to memorize them, then leave the flashcards in a pile and never share the mnemonics with anyone. Let's change that.</p>
 </section>

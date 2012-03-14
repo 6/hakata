@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.find(:all, :order => 'updated_at DESC')
+    @lists = List.find(:all, :order => 'created_at DESC')
     
     respond_to do |format|
       format.html # index.html.erb

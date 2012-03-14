@@ -1,3 +1,45 @@
+/* Index
+============================*/
+.list_list {
+  list-style: none;
+  margin: 0;
+  li {
+    padding: 10px;
+    border-bottom: dotted 1px #ccc;
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      margin: 5px 0 0;
+      font-family: Lucida Grande, sans-serif;
+    }
+    h3 {
+      a {
+        font-weight: normal;
+        font-size: 11px;
+        color: #888;
+        &:hover {
+          color: #aaa;
+        }
+      }
+    }
+    h4 {
+      color: #5288DB;
+      font-size: 12px;
+      float: right;
+    }
+    h5 {
+      float: right;
+      margin: 7px 0 0;
+      a {
+        color: #888;
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
 /* Edit List
 ============================*/
 .edit_list_button {

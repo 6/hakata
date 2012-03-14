@@ -134,7 +134,7 @@ end
       <ul>
         <li><strong>Facts:&nbsp;</strong><%= @list.facts.count %></li>
         <li>
-          <span id="green_mnemonics"><strong>Green mnemonics:&nbsp;</strong><%= @list.greens %> (<%= @list.greens_percent %>%)</span>
+          <span id="green_mnemonics"><strong>Mnemonics:&nbsp;</strong><%= @list.greens %> (<%= @list.greens_percent %>%)</span>
           <span id="bar" style="width: <%= @list.greens_percent*2.4 %>px;"></span>
           <span id="bar_underling"></span>
         </li>
@@ -153,7 +153,7 @@ end
       <% end %>
       
       <% if @previous %>
-        <div class="previous">
+        <div class="previous" id="previous_fact">
           <a href="/lists/<%= @list.id %>/facts/<%= @previous.id %>">
             <span class="position"><%= @previous.listization(@list).position %></span>
             <span class="name"><%= @previous.name %> <!-- &#9664; --></span>
@@ -169,7 +169,7 @@ end
       </div>
       
       <% if @next %>
-        <div class="next">
+        <div class="next" id="next_fact">
           <a href="/lists/<%= @list.id %>/facts/<%= @next.id %>">
             <span class="position"><%= @next.listization(@list).position %></span>
             <span class="name"><%= @next.name %> <!-- &#9654; --></span>
@@ -193,11 +193,14 @@ end
       <span id="turn_key_bindings_off" <%= hide if !session[:key_bindings] %>>turn off</span>    
     </h3>
     <section id="key_bindings" <%= hide if !session[:key_bindings] %> data-key-bindings="<%= session[:key_bindings] %>">
-      <div class="key up">&#9650;</div>
-      <div class="key left">&#9664;</div>
-      <div class="key right">&#9654;</div>
-      <div class="key down">&#9660;</div>
-      <div class="key shift">shift</div>
+      <div class="key up disabled">&#9650;</div>
+      <div class="key left <%= 'disabled' unless @previous %>">&#9664;</div>
+      <div class="key right <%= 'disabled' unless @next %>">&#9654;</div>
+      <div class="key down disabled">&#9660;</div>
+      <div class="key shift <%= 'disabled' if session[:cardview]=='off' %>">shift</div>
+      <div class="plate next">next</div>
+      <div class="plate previous">previous</div>
+      <div class="plate reveal">reveal</div>
     </section>
 <!--
     <h3>Owners</h3>

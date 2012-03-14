@@ -13,14 +13,23 @@ Hakata::Application.routes.draw do
   resources :users
   resources :votes
   
-  match '/dashboard' => 'dashboard#index'
-  match 'sessions/cardview' => 'sessions#cardview'
-  match 'lists/:list_id/facts/:fact_id/remove' => 'lists#removeFact'
-  match 'lists/:list_id/facts/:id' => 'facts#show'
+  resources :relationships, :only => [:create, :destroy]
   
-  root :to => "home#index"
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   
   resources :lists do
     collection { post :sort }
   end
+  
+  match 'dashboard' => 'dashboard#index'
+  match 'sessions/cardview' => 'sessions#cardview'
+  match 'lists/:list_id/facts/:fact_id/remove' => 'lists#removeFact'
+  match 'lists/:list_id/facts/:id' => 'facts#show'
+  match 'about' => 'about#index'
+  
+  root :to => "dashboard#index"
 end

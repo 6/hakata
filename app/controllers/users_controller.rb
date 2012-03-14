@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   
+  before_filter :require_login, :except => [:show, :new, :create]
+  
+  def index  
+    @users = User.all
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   def show
     @user = User.find(params[:id])
     @activities = @user.activities.order('created_at DESC')
@@ -9,6 +18,20 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render :json => @user }
     end
+  end
+  
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following #.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers #.paginate(:page => params[:page])
+    render 'show_follow'
   end
   
   def lists
@@ -31,7 +54,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to '/login', :notice => "Signed up!"
     else
       render :new
     end

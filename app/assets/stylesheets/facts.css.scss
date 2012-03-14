@@ -191,6 +191,29 @@
       top: 10px;
       left: 140px;
     }
+    .key.disabled {
+      background-color: #7A8699;
+      border-bottom: solid 3px #444c58;
+    }
+    .plate {
+      font-size: 11px;
+      color: #ddd;
+    }
+    .plate.next {
+      position: absolute;
+      top: 61px;
+      left: 179px;
+    }
+    .plate.previous {
+      position: absolute;
+      top: 61px;
+      left: 12px;
+    }
+    .plate.reveal {
+      position: absolute;
+      top: 20px;
+      left: 193px;
+    }
   }
   #turn_key_bindings_on, #turn_key_bindings_off {
     color: white;

@@ -104,24 +104,24 @@ $ ->
 
 $ ->
   $('.key.right').click ->
-    next_fact() if $('.next').is('*')
+    next_fact() if $('#next_fact').is('*')
 
 $ ->
   $('.key.left').click -> 
-    previous_fact() if $('.previous').is('*')
+    previous_fact() if $('.#previous_fact').is('*')
 
 # The proceeding two may break in non-webkit browsers
 
 $ ->
   $(document).keydown( (e) ->
     if e.keyCode == 37 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
-      previous_fact() if $('.previous').is('*')
+      previous_fact() if $('#previous_fact').is('*')
   );
 
 $ ->
   $(document).keydown( (e) ->
     if e.keyCode == 39 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
-      next_fact() if $('.next').is('*')
+      next_fact() if $('#next_fact').is('*')
   );
 
 $ ->

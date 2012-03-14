@@ -1,24 +1,36 @@
 <% title false %>
 
 <section id="activity">
-  <% @activities.each do |a| %>
-    <div class="a">
-      <% if a.list && !a.mnemonic %>
-        <%= link_to a.user.name, a.user %> 
-        <%= a.verb %> 
-        <%= link_to a.list.name, a.list %>
-      <% elsif a.mnemonic %>
-        <%= link_to a.user.name, a.user %>
-        added a mnemonic to
-        <% if a.list %>
-          <%= link_to a.fact.name, '/lists/'+a.list.id.to_s+'/facts/'+a.fact.id.to_s %>
-          in <%= link_to a.list.name, a.list %>
-        <% else %>
-          <%= link_to a.fact.name, a.fact %>
+  <% if !@feed_items.empty? %>
+    <% @feed_items.each do |a| %>
+      <div class="a">
+        <% if a.list && !a.mnemonic %>
+          <%= link_to a.user.name, a.user %> 
+          <%= a.verb %> 
+          <%= link_to a.list.name, a.list %>
+        <% elsif a.mnemonic %>
+          <%= link_to a.user.name, a.user %>
+          added a mnemonic to
+          <% if a.list %>
+            <%= link_to a.fact.name, '/lists/'+a.list.id.to_s+'/facts/'+a.fact.id.to_s %>
+            in <%= link_to a.list.name, a.list %>
+          <% else %>
+            <%= link_to a.fact.name, a.fact %>
+          <% end %>
+          <p><%= a.mnemonic.body %></p>
         <% end %>
-        <p><%= a.mnemonic.body %></p>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h3 class="people_to_follow">People to follow:</h3>
+    <ul class="people_to_follow">
+    <% @users.each do |u| %>
+      <li>
+        <h2><%= link_to u.name, u %></h2>
+        <h5><%= u.neurons %> neurons, joined <%= time_ago_in_words(u.created_at) %> ago</h5>
+      </li>
+    <% end %>
+    </ul>
   <% end %>
 </section>
 
@@ -34,13 +46,5 @@
         <% end %>    
       <% end %>
     </ul>
-  </div>
-
-  <div class="new_fact_button">
-    <a href="/facts/new">Create new fact</a>
-  </div>
-
-  <div class="new_list_button">
-    <a href="/lists/new">Create new list</a>
   </div>
 </aside>

@@ -1,9 +1,10 @@
 <% title 'Lists' %>
 
 <div id="left_column">
-  <ul class="standard_list">
+  <ul class="list_list">
     <% @lists.each do |l| %>
       <li>
+        <h4><%= time_ago_in_words(l.created_at) %> ago</h4>
         <h2><%= link_to l.name, l %></h2>
         <h3><%= link_to l.user.name, l.user %></h3>
       </li>

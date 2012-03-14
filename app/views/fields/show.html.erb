@@ -1,24 +1,3 @@
-<% title @field.name %>
+<% title 'we did it.' %>
 
 <p id="notice"><%= notice %></p>
-
-<div id="left_column">
-
-  <div class="standard_title">
-    <h1><%= @field.name %></h1>
-  </div>
-  
-  <ul class="standard_list">
-    <% @field.facts.each do |t| %>
-      <li>
-        <h2><%= link_to t.name, t %></h2>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-</div>
-
-<div id="right_column">
-  <%= link_to 'Edit', edit_field_path(@field) %>
-</div>

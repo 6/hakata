@@ -1,3 +1,5 @@
+<% title @user.name %>
+
 <section id="introduce_yourself" class="clearfix">
   <h1><%= @user.name %></h1>
   <div id="lists" class="count">
@@ -8,6 +10,43 @@
     <h2><%= @user.mnemonics.count %></h2>
     <h3>Mnemonics</h3>
   </div> 
+  <div id="lists" class="count">
+    <h2><%= @user.neurons %></h2>
+    <h3>Neurons</h3>
+  </div>
+  
+  
+  <div class="stats">
+    <table summary="User stats">
+      <tr>
+        <td>
+          <a href="<%= following_user_path(@user) %>">
+            <span id="following" class="stat">
+              <%= @user.following.count %> following
+            </span>
+          </a>
+        </td>
+        <td>
+          <a href="<%= followers_user_path(@user) %>">
+            <span id="followers" class="stat">
+              <%= pluralize(@user.followers.count, "follower") %>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <% unless current_user == @user %>
+    <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+    </div>
+  <% end %>
+  
 </section>
 
 <section id="activity">

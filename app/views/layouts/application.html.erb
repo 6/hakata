@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
+<header <%= hide unless current_user %>>
   <div id="top">
     <div class="inner">
 	    <div id="login_status">
@@ -26,10 +26,9 @@
 	<div id="bottom">
 	  <div class="inner clearfix">
 	    <ul>
-	     <li class="<%= 'selected' if params[:controller] == 'home' %>"><%= link_to "Home", root_path %></li>
-	      <li class="<%= 'selected' if params[:controller] == 'dashboard' %>"><%= link_to "Dashboard", '/dashboard' %></li>
+	      <li class="<%= 'selected' if params[:controller] == 'dashboard' %>"><%= link_to 'Dashboard', '/' %></li>
 	      <li class="<%= 'selected' if params[:controller] == 'lists' %>"><%= link_to "Lists", lists_path %></li>
-	      <li class="<%= 'selected' if params[:controller] == 'facts' %>"><%= link_to "Facts", facts_path %></li>
+	      <li class="<%= 'selected' if params[:controller] == 'users' %>"><%= link_to "People", users_path %></li>
 	    </ul>
 	  </div>
 	</div>	  
