@@ -1,0 +1,20 @@
+<% title 'People' %>
+
+<div id="left_column">
+  <ul class="users">
+    <% @users.each do |u| %>
+      <li>
+        <h2><%= link_to u.name, u %></h2>
+        <h4><%= u.mnemonics.count %> mnemonics, <%= u.neurons %> neurons</h4>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<aside class="users">
+  <h5>You</h5>
+  <h1><%= link_to current_user.name, current_user %></h1>
+  <div class="neurons"><%= current_user.neurons %> Neurons</div>
+  <div class="mnemonics"><%= current_user.mnemonics.count %> Mnemonics</div>
+  <div class="lists"><%= current_user.lists.count %> Lists</div>
+</aside>
