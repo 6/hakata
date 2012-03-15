@@ -1,3 +1,28 @@
 // Place all the styles related to the About controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post {
+  color: #222;
+  a {
+    color: #5288DB;
+    font-weight: bold;
+    &:hover {
+      color: #7ca5e4;
+    }
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    margin-top: 24px;
+  }
+  p, ul, ol, h1, h2 {
+    margin-bottom: 8px;
+  }
+  p, ul, ol {
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
