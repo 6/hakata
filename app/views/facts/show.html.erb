@@ -147,7 +147,8 @@ end
         <div class="two_back">
           <a href="/lists/<%= @list.id %>/facts/<%= @two_back.id %>">
             <span class="position"><%= @two_back.listization(@list).position %></span>
-            <span class="name"><%= @two_back.name %></span>
+            <span class="name" <%= hide if session[:cardview] == 'back' %>><%= @two_back.name %></span>
+            <span class="definition" <%= hide if session[:cardview] != 'back' %>><%= @two_back.definition %></span>
           </a>
         </div>
       <% end %>
@@ -156,7 +157,8 @@ end
         <div class="previous" id="previous_fact">
           <a href="/lists/<%= @list.id %>/facts/<%= @previous.id %>">
             <span class="position"><%= @previous.listization(@list).position %></span>
-            <span class="name"><%= @previous.name %> <!-- &#9664; --></span>
+            <span class="name" <%= hide if session[:cardview] == 'back' %>><%= @previous.name %> <!-- &#9664; --></span>
+            <span class="definition" <%= hide if session[:cardview] != 'back' %>><%= @previous.definition %></span>
           </a>
         </div>
       <% end %>
@@ -164,7 +166,8 @@ end
       <div class="current">
         <a href="/lists/<%= @list.id %>/facts/<%= @fact.id %>">
           <span class="position"><%= @fact.listization(@list).position %></span>
-          <span class="name"><%= @fact.name %></span>
+          <span class="name" <%= hide if session[:cardview] == 'back' %>><%= @fact.name %></span>
+          <span class="definition" <%= hide if session[:cardview] != 'back' %>><%= @fact.definition %></span>
         </a>
       </div>
       
@@ -172,7 +175,8 @@ end
         <div class="next" id="next_fact">
           <a href="/lists/<%= @list.id %>/facts/<%= @next.id %>">
             <span class="position"><%= @next.listization(@list).position %></span>
-            <span class="name"><%= @next.name %> <!-- &#9654; --></span>
+            <span class="name" <%= hide if session[:cardview] == 'back' %>><%= @next.name %> <!-- &#9654; --></span>
+            <span class="definition" <%= hide if session[:cardview] != 'back' %>><%= @next.definition %></span>
           </a>
         </div>
       <% end %>
@@ -181,12 +185,24 @@ end
         <div class="two_forward">
           <a href="/lists/<%= @list.id %>/facts/<%= @two_forward.id %>">
             <span class="position"><%= @two_forward.listization(@list).position %></span>
-            <span class="name"><%= @two_forward.name %></span>
+            <span class="name" <%= hide if session[:cardview] == 'back' %>><%= @two_forward.name %></span>
+            <span class="definition" <%= hide if session[:cardview] != 'back' %>><%= @two_forward.definition %></span>
           </a>
         </div>
       <% end %>
 
     </section>  
+    
+    <h3>Flashcard Mode</h3>
+    <section id="card_mode" data-card-mode="<%= session[:cardview] %>">
+      <div class="button_container clearfix">
+        <span id="front_mode" class="front <%= 'front_pressed' if session[:cardview] == 'front' %>">front</span>
+        <span id="center_mode" class="center <%= 'center_pressed' if session[:cardview] == 'off' %>">off</span>
+        <span id="back_mode" class="back <%= 'back_pressed' if session[:cardview] == 'back' %>">back</span>
+      </div>
+    </section>
+
+    
     <h3>
       Key Controls
       <span id="turn_key_bindings_on" <%= hide if session[:key_bindings] %>>turn on</span>
@@ -225,18 +241,7 @@ end
       </a>
 -->
   </div>
-  
-  <% if @list %>
-    <div id="card_mode">
-      <h4>Flashcard Mode</h4>
-      <div class="button_container clearfix">
-        <span id="front_mode" class="front <%= 'front_pressed' if session[:cardview] == 'front' %>">front</span>
-        <span id="center_mode" class="center <%= 'center_pressed' if session[:cardview] == 'off' %>">off</span>
-        <span id="back_mode" class="back <%= 'back_pressed' if session[:cardview] == 'back' %>">back</span>
-      </div>
-    </div>
-  <% end %>
-  
+    
   <% if @member_lists %>
     <div class="member_lists">
       <h2>Part of these Lists</h2>

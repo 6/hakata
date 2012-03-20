@@ -10,9 +10,13 @@ previous_fact = () ->
   window.location = $('.previous a').attr('href')
 
 mode_front = () ->
+  $('#card_mode').data('card-mode', 'front')
   $('#front_mode').addClass('front_pressed')
   $('#center_mode').removeClass('center_pressed')
   $('#back_mode').removeClass('back_pressed')
+  $('.key.shift').removeClass('disabled')
+  $('#list_navigation .name').show()
+  $('#list_navigation .definition').hide()
   turn_front()
 
 turn_front = () ->
@@ -21,9 +25,14 @@ turn_front = () ->
   $('#center').hide()
 
 mode_center = () ->
+  $('#card_mode').data('card-mode', 'off')
   $('#back_mode').removeClass('back_pressed')
   $('#center_mode').addClass('center_pressed')
   $('#front_mode').removeClass('front_pressed')
+  $('.key.shift').addClass('disabled')
+  $('.key.shift').removeClass('pressed')
+  $('#list_navigation .name').show()
+  $('#list_navigation .definition').hide()
   turn_center()
 
 turn_center = () ->
@@ -32,9 +41,13 @@ turn_center = () ->
   $('#back').hide()
   
 mode_back = () ->
+  $('#card_mode').data('card-mode', 'back')
   $('#front_mode').removeClass('front_pressed')
   $('#center_mode').removeClass('center_pressed')
   $('#back_mode').addClass('back_pressed')
+  $('.key.shift').removeClass('disabled')
+  $('#list_navigation .name').hide()
+  $('#list_navigation .definition').show()
   turn_back()
 
 turn_back = () ->
@@ -126,7 +139,7 @@ $ ->
 
 $ ->
   $(document).keydown( (e) ->
-    if e.keyCode == 16 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus")
+    if e.keyCode == 16 && $('#key_bindings').data('key-bindings') && !$('textarea').is(":focus") && $('#card_mode').data('card-mode') != 'off'
       $('.key.shift').addClass('pressed')
       turn_center()
   );
