@@ -8,7 +8,7 @@ toggle_edit_list = () ->
   $('.delete_list_button').toggleClass('down')
 
 
-jQuery ->
+$ ->
   $('#facts').sortable
     axis: 'y'
     handle: '.handle'
@@ -20,7 +20,12 @@ $ ->
   $('.new_fact_button').click (e) ->
     e.preventDefault()
     $('.add-fact-form').show()
-    
+
+$ ->
+  $('.cancel_new_fact').click (e) ->
+    e.preventDefault()
+    $('.add-fact-form').hide()
+
 $ ->
   $('.edit_list_button').click -> 
     toggle_edit_list()

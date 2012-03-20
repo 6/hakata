@@ -17,6 +17,7 @@ mode_front = () ->
   $('.key.shift').removeClass('disabled')
   $('#list_navigation .name').show()
   $('#list_navigation .definition').hide()
+  $('.key.shift').removeClass('pressed')
   turn_front()
 
 turn_front = () ->
@@ -48,6 +49,7 @@ mode_back = () ->
   $('.key.shift').removeClass('disabled')
   $('#list_navigation .name').hide()
   $('#list_navigation .definition').show()
+  $('.key.shift').removeClass('pressed')
   turn_back()
 
 turn_back = () ->
