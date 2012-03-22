@@ -5,7 +5,7 @@
 <div id="left_column">
   <div class="list standard_title">
     <h1><%= @list.name %></h1>
-    <div class="owner">Created by <%= link_to current_user.name, current_user %></div>
+    <div class="owner">Created by <%= link_to @list.user.name, @list.user %></div>
     <div class="description"><%= m @list.description %></div>
   </div>
   
